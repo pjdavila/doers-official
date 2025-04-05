@@ -13,6 +13,7 @@ import { Mail, Phone, Stamp, Instagram, Twitter, Linkedin, Dribbble } from "luci
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -26,6 +27,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const { t } = useTranslation();
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -84,10 +86,10 @@ const ContactSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-12">
           <Reveal>
-            <h2 className="text-4xl md:text-5xl font-bold font-space mb-4">Contact Us</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-space mb-4">{t('contact.title')}</h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-gray text-lg max-w-2xl mx-auto">Reach out for a new project or just say hello</p>
+            <p className="text-gray text-lg max-w-2xl mx-auto">{t('contact.subtitle')}</p>
           </Reveal>
         </div>
         

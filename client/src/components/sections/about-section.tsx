@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
 import Parallax from "@/components/animations/parallax";
 import { LightbulbIcon, Rocket, HandshakeIcon, TrendingUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const AboutSection = () => {
+  const { t } = useTranslation();
+  
   const clients = [
     "WAPA TV",
     "TeleOnce",
@@ -47,8 +50,8 @@ const AboutSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <Reveal>
           <div className="text-center mb-16">
-            <h2 className="font-bebas text-4xl md:text-6xl mb-4">ABOUT <span className="text-orange">DOERS</span></h2>
-            <p className="font-space text-lg text-gray max-w-2xl mx-auto">Since 2012, we've been transforming ideas into digital reality with rocket science precision.</p>
+            <h2 className="font-bebas text-4xl md:text-6xl mb-4">{t('about.title')} <span className="text-orange">DOERS</span></h2>
+            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{t('about.subtitle')}</p>
           </div>
         </Reveal>
         

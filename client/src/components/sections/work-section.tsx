@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
 import ProjectCard from "@/components/ui/project-card";
 import { ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const projects = [
   {
@@ -35,6 +36,7 @@ const projects = [
 ];
 
 const WorkSection = () => {
+  const { t } = useTranslation();
   return (
     <section id="work" className="py-20 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-black">
@@ -56,8 +58,8 @@ const WorkSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <Reveal>
           <div className="text-center mb-16">
-            <h2 className="font-bebas text-4xl md:text-6xl mb-4">OUR <span className="text-purple">STELLAR</span> WORK</h2>
-            <p className="font-space text-lg text-gray max-w-2xl mx-auto">Transforming ambitious ideas into extraordinary digital experiences for leading brands.</p>
+            <h2 className="font-bebas text-4xl md:text-6xl mb-4">{t('work.title')}</h2>
+            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{t('work.subtitle')}</p>
           </div>
         </Reveal>
         

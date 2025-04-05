@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
 import ServiceCard from "@/components/ui/service-card";
 import { Smartphone, Laptop, Tv, Bot, Palette, LineChart, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const services = [
   {
@@ -49,6 +50,7 @@ const services = [
 ];
 
 const ServicesSection = () => {
+  const { t } = useTranslation();
   return (
     <section id="services" className="py-20 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-black">
@@ -70,8 +72,8 @@ const ServicesSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <Reveal>
           <div className="text-center mb-16">
-            <h2 className="font-bebas text-4xl md:text-6xl mb-4">OUR <span className="text-orange">ROCKET SCIENCE</span></h2>
-            <p className="font-space text-lg text-gray max-w-2xl mx-auto">We don't just build digital products. We craft experiences that drive growth through a perfect blend of strategy, design, and technology.</p>
+            <h2 className="font-bebas text-4xl md:text-6xl mb-4">{t('services.title')}</h2>
+            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{t('services.subtitle')}</p>
           </div>
         </Reveal>
         
