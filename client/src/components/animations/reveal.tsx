@@ -6,13 +6,15 @@ interface RevealProps {
   width?: "fit-content" | "100%";
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
+  className?: string;
 }
 
 const Reveal = ({ 
   children, 
   width = "fit-content", 
   delay = 0, 
-  direction = "up" 
+  direction = "up",
+  className = ""
 }: RevealProps) => {
   // Set initial and animate values based on direction
   let initialX = 0;
@@ -34,7 +36,7 @@ const Reveal = ({
   }
 
   return (
-    <div style={{ position: "relative", width, overflow: "hidden" }}>
+    <div style={{ position: "relative", width, overflow: "hidden" }} className={className}>
       <motion.div
         initial={{ opacity: 0, x: initialX, y: initialY }}
         whileInView={{ opacity: 1, x: 0, y: 0 }}

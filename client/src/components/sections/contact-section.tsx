@@ -158,7 +158,7 @@ const ContactSection = () => {
             </div>
             
             <div className="lg:w-1/2 w-full">
-              <Reveal direction="right">
+              <Reveal direction="right" className="w-full" width="100%">
                 <div className="bg-white bg-opacity-[0.03] backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-gray border-opacity-10 relative w-full">
                   <h3 className="font-space text-2xl mb-6">Start Your Project</h3>
                   
