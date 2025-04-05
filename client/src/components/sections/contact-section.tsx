@@ -105,14 +105,14 @@ const ContactSection = () => {
                       <div className="bg-orange bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center">
                         <Mail className="text-orange" />
                       </div>
-                      <a href="mailto:hello@doers.com" className="text-white hover:text-orange transition-colors">hello@doers.com</a>
+                      <a href="mailto:info@doers.dev" className="text-white hover:text-orange transition-colors">info@doers.dev</a>
                     </div>
                     
                     <div className="flex items-center gap-4">
                       <div className="bg-purple bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center">
                         <Phone className="text-purple" />
                       </div>
-                      <a href="tel:+1234567890" className="text-white hover:text-purple transition-colors">+1 (234) 567-890</a>
+                      <a href="tel:+17875922402" className="text-white hover:text-purple transition-colors">+1 (787) 592-2402</a>
                     </div>
                   </div>
                   
