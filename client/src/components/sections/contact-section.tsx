@@ -84,67 +84,69 @@ const ContactSection = () => {
       <div className="container mx-auto px-4 md:px-6 xl:px-8 relative z-10 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <Reveal direction="left">
-            <h2 className="font-bebas text-4xl md:text-6xl mb-6">LET'S <span className="text-orange">CREATE</span> TOGETHER</h2>
-            <p className="font-space text-lg text-gray mb-8">Ready to take your digital presence to the next level? We're here to help transform your vision into reality.</p>
-            
-            <div className="mb-8">
-              <h3 className="font-space text-xl mb-4">Get in Touch</h3>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="bg-orange bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center">
-                  <Mail className="text-orange" />
+            <div className="w-full">
+              <h2 className="font-bebas text-4xl md:text-6xl mb-6">LET'S <span className="text-orange">CREATE</span> TOGETHER</h2>
+              <p className="font-space text-lg text-gray mb-8">Ready to take your digital presence to the next level? We're here to help transform your vision into reality.</p>
+              
+              <div className="mb-8">
+                <h3 className="font-space text-xl mb-4">Get in Touch</h3>
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="bg-orange bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center">
+                    <Mail className="text-orange" />
+                  </div>
+                  <a href="mailto:hello@doers.com" className="text-white hover:text-orange transition-colors">hello@doers.com</a>
                 </div>
-                <a href="mailto:hello@doers.com" className="text-white hover:text-orange transition-colors">hello@doers.com</a>
+                
+                <div className="flex items-center gap-4">
+                  <div className="bg-purple bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center">
+                    <Phone className="text-purple" />
+                  </div>
+                  <a href="tel:+1234567890" className="text-white hover:text-purple transition-colors">+1 (234) 567-890</a>
+                </div>
               </div>
               
-              <div className="flex items-center gap-4">
-                <div className="bg-purple bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center">
-                  <Phone className="text-purple" />
+              <div>
+                <h3 className="font-space text-xl mb-4">Follow Us</h3>
+                <div className="flex gap-4">
+                  <motion.a 
+                    href="#" 
+                    className="bg-white bg-opacity-5 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange hover:bg-opacity-10 transition-all"
+                    whileHover={{ y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Instagram className="text-white" />
+                  </motion.a>
+                  <motion.a 
+                    href="#" 
+                    className="bg-white bg-opacity-5 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange hover:bg-opacity-10 transition-all"
+                    whileHover={{ y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Twitter className="text-white" />
+                  </motion.a>
+                  <motion.a 
+                    href="#" 
+                    className="bg-white bg-opacity-5 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange hover:bg-opacity-10 transition-all"
+                    whileHover={{ y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Linkedin className="text-white" />
+                  </motion.a>
+                  <motion.a 
+                    href="#" 
+                    className="bg-white bg-opacity-5 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange hover:bg-opacity-10 transition-all"
+                    whileHover={{ y: -5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Dribbble className="text-white" />
+                  </motion.a>
                 </div>
-                <a href="tel:+1234567890" className="text-white hover:text-purple transition-colors">+1 (234) 567-890</a>
-              </div>
-            </div>
-            
-            <div>
-              <h3 className="font-space text-xl mb-4">Follow Us</h3>
-              <div className="flex gap-4">
-                <motion.a 
-                  href="#" 
-                  className="bg-white bg-opacity-5 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange hover:bg-opacity-10 transition-all"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Instagram className="text-white" />
-                </motion.a>
-                <motion.a 
-                  href="#" 
-                  className="bg-white bg-opacity-5 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange hover:bg-opacity-10 transition-all"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Twitter className="text-white" />
-                </motion.a>
-                <motion.a 
-                  href="#" 
-                  className="bg-white bg-opacity-5 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange hover:bg-opacity-10 transition-all"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Linkedin className="text-white" />
-                </motion.a>
-                <motion.a 
-                  href="#" 
-                  className="bg-white bg-opacity-5 w-12 h-12 rounded-full flex items-center justify-center hover:bg-orange hover:bg-opacity-10 transition-all"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Dribbble className="text-white" />
-                </motion.a>
               </div>
             </div>
           </Reveal>
           
           <Reveal direction="right">
-            <div className="bg-white bg-opacity-[0.03] backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-gray border-opacity-10 relative max-w-md w-full mx-auto lg:mx-0">
+            <div className="bg-white bg-opacity-[0.03] backdrop-blur-sm rounded-3xl p-8 md:p-10 border border-gray border-opacity-10 relative w-full h-full">
               <h3 className="font-space text-2xl mb-6">Start Your Project</h3>
               
               <Form {...form}>
