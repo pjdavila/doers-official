@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Twitter, Instagram, Linkedin, Dribbble } from "lucide-react";
 import doersLogo from "../../assets/images/DOERS-Horizontal.png";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="py-12 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray to-transparent opacity-20"></div>
@@ -12,14 +14,14 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <Link href="#" className="flex items-center gap-2 mb-6 md:mb-0">
             <img src={doersLogo} alt="DOERS Logo" className="h-9" />
-            <span className="text-orange text-xs font-space">SINCE 2012</span>
+            <span className="text-orange text-xs font-space">{t('footer.since')}</span>
           </Link>
           
           <nav className="flex flex-wrap justify-center gap-6 md:gap-8">
-            <a href="#services" className="text-gray hover:text-white transition-colors font-space text-sm">SERVICES</a>
-            <a href="#work" className="text-gray hover:text-white transition-colors font-space text-sm">WORK</a>
-            <a href="#about" className="text-gray hover:text-white transition-colors font-space text-sm">ABOUT</a>
-            <a href="#contact" className="text-gray hover:text-white transition-colors font-space text-sm">CONTACT</a>
+            <a href="#services" className="text-gray hover:text-white transition-colors font-space text-sm">{t('header.navigation.services')}</a>
+            <a href="#work" className="text-gray hover:text-white transition-colors font-space text-sm">{t('header.navigation.work')}</a>
+            <a href="#about" className="text-gray hover:text-white transition-colors font-space text-sm">{t('header.navigation.about')}</a>
+            <a href="#contact" className="text-gray hover:text-white transition-colors font-space text-sm">{t('header.navigation.contact')}</a>
           </nav>
         </div>
         
@@ -30,7 +32,7 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-gray text-sm mb-4 md:mb-0">&copy; {new Date().getFullYear()} DOERS. All rights reserved.</p>
+          <p className="text-gray text-sm mb-4 md:mb-0">&copy; {new Date().getFullYear()} DOERS. {t('footer.copyright')}</p>
           
           <div className="flex gap-4">
             <a href="#" className="text-gray hover:text-white transition-colors">

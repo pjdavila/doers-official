@@ -3,34 +3,38 @@ import Reveal from "@/components/animations/reveal";
 import ProjectCard from "@/components/ui/project-card";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import project1Image from "@/assets/images/projects/project1.svg";
+import project2Image from "@/assets/images/projects/project2.svg";
+import project3Image from "@/assets/images/projects/project3.svg";
+import project4Image from "@/assets/images/projects/project4.svg";
 
 const projects = [
   {
-    image: "https://images.unsplash.com/photo-1481487196290-c152efe083f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=675&q=80",
-    category: "OTT APPLICATION",
+    image: project1Image,
+    category: "work.projects.ottApp.category",
     title: "WAPA TV",
-    description: "Multi-platform streaming solution with personalized content delivery and analytics integration.",
+    description: "work.projects.ottApp.description",
     categoryColor: "text-orange",
   },
   {
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=675&q=80",
-    category: "WEBSITE REDESIGN",
+    image: project2Image,
+    category: "work.projects.webRedesign.category",
     title: "TeleOnce",
-    description: "High-performance content platform with dynamic scheduling and live streaming capabilities.",
+    description: "work.projects.webRedesign.description",
     categoryColor: "text-purple",
   },
   {
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=675&q=80",
-    category: "E-COMMERCE PLATFORM",
+    image: project3Image,
+    category: "work.projects.ecommerce.category",
     title: "PRTicket",
-    description: "Comprehensive ticketing solution with secure payment processing and event management.",
+    description: "work.projects.ecommerce.description",
     categoryColor: "text-orange",
   },
   {
-    image: "https://images.unsplash.com/photo-1581094794329-c8112c4b3433?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&h=675&q=80",
-    category: "INTERACTIVE EXPERIENCE",
+    image: project4Image,
+    category: "work.projects.interactive.category",
     title: "Jeep & RAM",
-    description: "Immersive digital showroom with 3D vehicle customization and lead generation integration.",
+    description: "work.projects.interactive.description",
     categoryColor: "text-purple",
   }
 ];
@@ -85,7 +89,7 @@ const WorkSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>VIEW ALL PROJECTS</span>
+              <span>{t('work.viewAll')}</span>
               <ArrowRight size={20} />
             </motion.a>
           </div>
