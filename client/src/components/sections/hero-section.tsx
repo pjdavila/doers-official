@@ -4,205 +4,461 @@ import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
-// Componente de cohete clásico estilo cartoon
+// Componente de cohete 3D con efecto realista
 const ClassicRocket = () => {
   return (
     <motion.div className="rocket-3d">
-      <svg viewBox="0 0 240 400" width="100%" height="100%" className="w-full h-full">
-        {/* Efectos de iluminación y gradientes */}
+      <svg viewBox="0 0 240 450" width="100%" height="100%" className="w-full h-full">
+        {/* Efectos avanzados de iluminación y gradientes */}
         <defs>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="8" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
           
-          <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ff3333" />
-            <stop offset="50%" stopColor="#ff0000" />
-            <stop offset="100%" stopColor="#cc0000" />
+          {/* Gradiente para la nariz del cohete */}
+          <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="85%" y2="85%">
+            <stop offset="0%" stopColor="#ff8c42" />
+            <stop offset="40%" stopColor="#ff7730" />
+            <stop offset="100%" stopColor="#ff5c11" />
           </linearGradient>
           
-          <linearGradient id="whiteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          {/* Gradiente para el cuerpo principal */}
+          <linearGradient id="whiteGradient" x1="30%" y1="0%" x2="90%" y2="100%">
             <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="50%" stopColor="#f5f5f5" />
-            <stop offset="100%" stopColor="#e0e0e0" />
+            <stop offset="50%" stopColor="#f0f0f0" />
+            <stop offset="100%" stopColor="#e6e6e6" />
           </linearGradient>
           
-          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#66ccff" />
-            <stop offset="50%" stopColor="#33aaff" />
-            <stop offset="100%" stopColor="#0088cc" />
+          {/* Gradiente para el efecto de sombra en el cuerpo */}
+          <linearGradient id="shadowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#bbbbbb" />
+            <stop offset="50%" stopColor="#e0e0e0" />
+            <stop offset="100%" stopColor="#bbbbbb" />
           </linearGradient>
           
-          <radialGradient id="fireGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-            <stop offset="0%" stopColor="#ffff00" stopOpacity="1" />
+          {/* Gradiente para la ventana */}
+          <radialGradient id="windowGradient" cx="40%" cy="40%" r="60%" fx="30%" fy="30%">
+            <stop offset="0%" stopColor="#aae6ff" />
+            <stop offset="40%" stopColor="#66ccff" />
+            <stop offset="100%" stopColor="#0099cc" />
+          </radialGradient>
+          
+          {/* Gradiente para las aletas */}
+          <linearGradient id="finGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ff7e42" />
+            <stop offset="50%" stopColor="#ff5c11" />
+            <stop offset="100%" stopColor="#e64d00" />
+          </linearGradient>
+          
+          {/* Gradiente para el fuego principal */}
+          <radialGradient id="fireGradient" cx="50%" cy="30%" r="70%" fx="50%" fy="30%">
+            <stop offset="0%" stopColor="#ffff99" stopOpacity="1" />
+            <stop offset="20%" stopColor="#ffff00" stopOpacity="0.95" />
             <stop offset="40%" stopColor="#ffcc00" stopOpacity="0.9" />
-            <stop offset="70%" stopColor="#ff6600" stopOpacity="0.8" />
+            <stop offset="60%" stopColor="#ff9900" stopOpacity="0.85" />
+            <stop offset="80%" stopColor="#ff6600" stopOpacity="0.8" />
             <stop offset="100%" stopColor="#ff3300" stopOpacity="0" />
           </radialGradient>
           
+          {/* Gradiente para efectos metálicos */}
+          <linearGradient id="metalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#b3b3b3" />
+            <stop offset="50%" stopColor="#808080" />
+            <stop offset="100%" stopColor="#4d4d4d" />
+          </linearGradient>
+          
+          {/* Filtros para sombras y efectos 3D */}
           <filter id="softShadow">
-            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#222" />
+            <feDropShadow dx="2" dy="4" stdDeviation="3" floodColor="#222" floodOpacity="0.3" />
+          </filter>
+          
+          <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur" />
+            <feOffset in="blur" dx="3" dy="3" result="offsetBlur" />
+            <feComposite in="SourceGraphic" in2="offsetBlur" operator="over" />
           </filter>
         </defs>
 
-        {/* Zona de fuego del cohete */}
+        {/* Grupo principal del cohete con efecto de flotación */}
         <motion.g
           animate={{ 
-            y: [0, -3, 0]
+            y: [0, -5, 0]
           }}
           transition={{ 
-            duration: 0.5, 
+            duration: 3, 
             repeat: Infinity, 
             ease: "easeInOut" 
           }}
         >
-          {/* Fuego del cohete */}
-          <motion.path 
-            d="M120 290 
-               C100 310, 90 340, 120 370 
-               C150 340, 140 310, 120 290 Z" 
-            fill="url(#fireGradient)"
-            filter="url(#glow)"
-            animate={{ 
-              d: [
-                "M120 290 C100 310, 90 340, 120 370 C150 340, 140 310, 120 290 Z",
-                "M120 290 C100 315, 95 345, 120 380 C145 345, 140 315, 120 290 Z",
-                "M120 290 C100 310, 90 340, 120 370 C150 340, 140 310, 120 290 Z"
-              ]
-            }}
-            transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
-          />
-        
-          {/* Cuerpo principal del cohete - parte inferior (base) */}
-          <motion.path
-            d="M90 240 L90 290 L150 290 L150 240 Z"
-            fill="#333333"
-            stroke="#222222"
-            strokeWidth="1"
-          />
-        
-          {/* Cuerpo principal del cohete - parte central */}
-          <motion.ellipse
-            cx="120"
-            cy="240"
-            rx="30"
-            ry="5"
-            fill="#333333"
-            stroke="#222222"
-            strokeWidth="1"
-          />
-        
-          {/* Cuerpo principal del cohete - parte blanca */}
-          <motion.path
-            d="M90 100 L90 240 
-               A30 10 0 0 0 150 240
-               L150 100 Z"
-            fill="url(#whiteGradient)"
-            stroke="#bbbbbb"
-            strokeWidth="1"
-            filter="url(#softShadow)"
-          />
-          
-          {/* Nariz roja del cohete */}
-          <motion.path
-            d="M90 100 C90 50, 120 20, 150 100 Z"
-            fill="url(#redGradient)"
-            stroke="#cc0000"
-            strokeWidth="1"
-            filter="url(#softShadow)"
-          />
-          
-          {/* Ventana/portilla circular */}
-          <motion.circle
-            cx="120"
-            cy="150"
-            r="20"
-            fill="url(#blueGradient)"
-            stroke="#999999"
-            strokeWidth="3"
-            filter="url(#softShadow)"
-            animate={{ 
-              opacity: [0.9, 1, 0.9]
-            }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-          
-          {/* Brillo de la ventana */}
-          <motion.circle
-            cx="115"
-            cy="145"
-            r="5"
-            fill="#ffffff"
-            opacity="0.7"
-          />
-          
-          {/* Aletas laterales rojas */}
-          <motion.path
-            d="M150 180 L190 240 L150 240 Z"
-            fill="url(#redGradient)"
-            stroke="#cc0000"
-            strokeWidth="1"
-            filter="url(#softShadow)"
-          />
-          
-          <motion.path
-            d="M90 180 L50 240 L90 240 Z"
-            fill="url(#redGradient)"
-            stroke="#cc0000"
-            strokeWidth="1"
-            filter="url(#softShadow)"
-          />
-          
-          {/* Aleta central roja */}
-          <motion.path
-            d="M120 240 L120 200 L90 240 L150 240 Z"
-            fill="url(#redGradient)"
-            stroke="#cc0000"
-            strokeWidth="1"
-            filter="url(#softShadow)"
-          />
-          
-          {/* Detalles del cohete - línea de separación */}
-          <motion.path
-            d="M90 170 L150 170"
-            stroke="#cccccc"
-            strokeWidth="1"
-          />
-          
-          {/* Remaches/tornillos decorativos */}
-          {[...Array(8)].map((_, i) => (
-            <motion.circle 
-              key={i}
-              cx={i % 2 === 0 ? 95 : 145}
-              cy={130 + i * 15}
-              r={2}
-              fill="#999999"
+          {/* Efectos de fuego con múltiples capas */}
+          <motion.g>
+            {/* Capa externa del fuego - más amplia y difusa */}
+            <motion.path 
+              d="M120 290 
+                 C90 320, 70 360, 120 410 
+                 C170 360, 150 320, 120 290 Z" 
+              fill="url(#fireGradient)"
+              filter="url(#glow)"
+              opacity="0.7"
+              animate={{ 
+                d: [
+                  "M120 290 C90 320, 70 360, 120 410 C170 360, 150 320, 120 290 Z",
+                  "M120 290 C85 325, 65 370, 120 420 C175 370, 155 325, 120 290 Z",
+                  "M120 290 C90 320, 70 360, 120 410 C170 360, 150 320, 120 290 Z"
+                ],
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
             />
-          ))}
+            
+            {/* Capa interna del fuego - más brillante y concentrada */}
+            <motion.path 
+              d="M120 290 
+                 C105 310, 95 340, 120 380 
+                 C145 340, 135 310, 120 290 Z" 
+              fill="#ffff00"
+              filter="url(#glow)"
+              opacity="0.9"
+              animate={{ 
+                d: [
+                  "M120 290 C105 310, 95 340, 120 380 C145 340, 135 310, 120 290 Z",
+                  "M120 290 C100 315, 90 350, 120 390 C150 350, 140 315, 120 290 Z",
+                  "M120 290 C105 310, 95 340, 120 380 C145 340, 135 310, 120 290 Z"
+                ],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            
+            {/* Núcleo del fuego - intenso y brillante */}
+            <motion.ellipse
+              cx="120"
+              cy="320"
+              rx="15"
+              ry="25"
+              fill="#ffffff"
+              filter="url(#glow)"
+              opacity="0.8"
+              animate={{ 
+                ry: [25, 35, 25],
+                opacity: [0.8, 1, 0.8]
+              }}
+              transition={{ duration: 0.6, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.g>
+        
+          {/* Base del cohete con detalles metálicos */}
+          <g>
+            {/* Parte inferior curva */}
+            <path
+              d="M85 240 L85 280 
+                 A35 10 0 0 0 155 280 
+                 L155 240 Z"
+              fill="url(#metalGradient)"
+              stroke="#555555"
+              strokeWidth="1"
+              filter="url(#softShadow)"
+            />
+            
+            {/* Base metálica con sombras */}
+            <ellipse
+              cx="120"
+              cy="280"
+              rx="35"
+              ry="8"
+              fill="#444444"
+              stroke="#333333"
+              strokeWidth="1"
+            />
+            
+            {/* Anillo de conexión */}
+            <path
+              d="M90 250 L90 260 L150 260 L150 250"
+              fill="none"
+              stroke="#666666"
+              strokeWidth="1.5"
+            />
+          </g>
+        
+          {/* Cuerpo principal del cohete con efecto 3D */}
+          <g>
+            {/* Cuerpo principal blanco */}
+            <path
+              d="M85 80 L85 240 
+                 A35 15 0 0 0 155 240
+                 L155 80 Z"
+              fill="url(#whiteGradient)"
+              stroke="#cccccc"
+              strokeWidth="1"
+              filter="url(#softShadow)"
+            />
+            
+            {/* Efecto de volumen y sombra lateral izquierda */}
+            <path
+              d="M85 80 L85 240 
+                 C95 235, 105 233, 120 233
+                 L120 80 Z"
+              fill="url(#shadowGradient)"
+              opacity="0.1"
+            />
+            
+            {/* Detalles del cuerpo - lineas horizontales */}
+            {[...Array(4)].map((_, i) => (
+              <path
+                key={`line-${i}`}
+                d="M90 140 L150 140"
+                stroke="#dddddd"
+                strokeWidth="1"
+                transform={`translate(0, ${i * 25})`}
+                opacity="0.8"
+              />
+            ))}
+          </g>
+          
+          {/* Nariz del cohete con efecto cónico 3D */}
+          <g>
+            <path
+              d="M85 80 C85 30, 120 10, 155 80 Z"
+              fill="url(#orangeGradient)"
+              stroke="#e64d00"
+              strokeWidth="1"
+              filter="url(#softShadow)"
+            />
+            
+            {/* Sombra para el efecto 3D en la nariz */}
+            <path
+              d="M85 80 C90 40, 105 20, 120 35 L120 80 Z"
+              fill="#000000"
+              opacity="0.1"
+            />
+            
+            {/* Brillo en la punta */}
+            <path
+              d="M115 40 C118 30, 125 25, 130 35"
+              stroke="#ffffff"
+              strokeWidth="2"
+              opacity="0.6"
+              strokeLinecap="round"
+            />
+          </g>
+          
+          {/* Ventana circular con efecto cristal */}
+          <g>
+            {/* Ventana principal */}
+            <circle
+              cx="120"
+              cy="130"
+              r="18"
+              fill="url(#windowGradient)"
+              stroke="#999999"
+              strokeWidth="3"
+              filter="url(#softShadow)"
+            />
+            
+            {/* Marco metálico */}
+            <circle
+              cx="120"
+              cy="130"
+              r="20"
+              fill="none"
+              stroke="url(#metalGradient)"
+              strokeWidth="3"
+            />
+            
+            {/* Reflejo en la ventana - efecto de brillo */}
+            <path
+              d="M110 122 A12 8 0 0 0 125 122"
+              stroke="#ffffff"
+              strokeWidth="4"
+              opacity="0.6"
+              strokeLinecap="round"
+            />
+            
+            {/* Tornillos de la ventana */}
+            {[45, 135, 225, 315].map((angle, i) => (
+              <circle
+                key={`screw-${i}`}
+                cx={120 + Math.cos(angle * Math.PI / 180) * 22}
+                cy={130 + Math.sin(angle * Math.PI / 180) * 22}
+                r="2"
+                fill="#666666"
+              />
+            ))}
+          </g>
+          
+          {/* Aletas del cohete con efectos 3D */}
+          <g>
+            {/* Aleta derecha */}
+            <path
+              d="M155 180 L190 250 L155 250 Z"
+              fill="url(#finGradient)"
+              stroke="#cc4400"
+              strokeWidth="1.5"
+              filter="url(#softShadow)"
+            />
+            
+            {/* Efecto 3D en aleta derecha */}
+            <path
+              d="M155 180 L170 210 L155 210 Z"
+              fill="#ffffff"
+              opacity="0.2"
+            />
+            
+            {/* Aleta izquierda */}
+            <path
+              d="M85 180 L50 250 L85 250 Z"
+              fill="url(#finGradient)"
+              stroke="#cc4400"
+              strokeWidth="1.5"
+              filter="url(#softShadow)"
+            />
+            
+            {/* Efecto 3D en aleta izquierda */}
+            <path
+              d="M85 180 L70 210 L85 210 Z"
+              fill="#000000"
+              opacity="0.2"
+            />
+            
+            {/* Detalles en las aletas - líneas de refuerzo */}
+            <path
+              d="M85 200 L65 230"
+              stroke="#cc4400"
+              strokeWidth="1"
+            />
+            <path
+              d="M155 200 L175 230"
+              stroke="#cc4400"
+              strokeWidth="1"
+            />
+          </g>
+          
+          {/* Detalles adicionales - logotipo y paneles */}
+          <g>
+            {/* Logo del cohete */}
+            <circle
+              cx="120"
+              cy="180"
+              r="10"
+              fill="#ffffff"
+              stroke="#dddddd"
+              strokeWidth="1"
+            />
+            <path
+              d="M115 180 L125 180 M120 175 L120 185"
+              stroke="#ff5c11"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+            
+            {/* Panel de control */}
+            <rect
+              x="100"
+              cy="205"
+              width="40"
+              height="15"
+              rx="2"
+              fill="#eeeeee"
+              stroke="#dddddd"
+              strokeWidth="1"
+            />
+            
+            {/* Luces de estado */}
+            <circle cx="105" cy="212" r="2" fill="#00cc00" />
+            <circle cx="115" cy="212" r="2" fill="#ffcc00" />
+            <circle cx="125" cy="212" r="2" fill="#ff0000" />
+            <circle cx="135" cy="212" r="2" fill="#3366ff" />
+          </g>
+          
+          {/* Elementos decorativos - antena y detalles */}
+          <g>
+            {/* Antena superior */}
+            <line
+              x1="120"
+              y1="30"
+              x2="120"
+              y2="15"
+              stroke="#999999"
+              strokeWidth="1.5"
+            />
+            <circle
+              cx="120"
+              cy="12"
+              r="3"
+              fill="#ff5c11"
+            />
+            
+            {/* Remaches decorativos en el cuerpo */}
+            {[...Array(6)].map((_, i) => (
+              <g key={`rivet-group-${i}`}>
+                <circle 
+                  key={`rivet-left-${i}`}
+                  cx={90}
+                  cy={100 + i * 25}
+                  r={1.5}
+                  fill="#999999"
+                />
+                <circle 
+                  key={`rivet-right-${i}`}
+                  cx={150}
+                  cy={100 + i * 25}
+                  r={1.5}
+                  fill="#999999"
+                />
+              </g>
+            ))}
+          </g>
         </motion.g>
 
-        {/* Partículas de fuego */}
-        {[...Array(12)].map((_, i) => (
-          <motion.circle 
-            key={i}
-            cx={105 + Math.random() * 30}
-            cy={330 + Math.random() * 40}
-            r={2 + Math.random() * 3}
-            fill={i % 2 === 0 ? "#ffcc00" : "#ff6600"}
-            animate={{ 
-              opacity: [0, 0.8, 0],
-              y: [0, 40 + Math.random() * 50],
-              x: [(Math.random() - 0.5) * 20, (Math.random() - 0.5) * 40],
-              scale: [1, 0.5, 0]
-            }}
-            transition={{ 
-              duration: 1 + Math.random(),
-              repeat: Infinity,
-              delay: Math.random() * 1
-            }}
-          />
-        ))}
+        {/* Partículas de fuego y humo */}
+        <g>
+          {/* Partículas de fuego */}
+          {[...Array(15)].map((_, i) => (
+            <motion.circle 
+              key={`fire-particle-${i}`}
+              cx={105 + Math.random() * 30}
+              cy={320 + Math.random() * 60}
+              r={1 + Math.random() * 3}
+              fill={i % 3 === 0 ? "#ffff00" : i % 3 === 1 ? "#ffcc00" : "#ff6600"}
+              filter="url(#glow)"
+              animate={{ 
+                opacity: [0, 0.8, 0],
+                y: [0, 60 + Math.random() * 80],
+                x: [(Math.random() - 0.5) * 30, (Math.random() - 0.5) * 60],
+                scale: [1, 0.5, 0]
+              }}
+              transition={{ 
+                duration: 1 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2
+              }}
+            />
+          ))}
+          
+          {/* Humo lateral */}
+          {[...Array(8)].map((_, i) => (
+            <motion.circle 
+              key={`smoke-particle-${i}`}
+              cx={i % 2 === 0 ? 80 + Math.random() * 10 : 160 - Math.random() * 10}
+              cy={290 + Math.random() * 30}
+              r={3 + Math.random() * 4}
+              fill="#ffffff"
+              opacity={0.3}
+              animate={{ 
+                opacity: [0, 0.3, 0],
+                y: [0, -40 - Math.random() * 60],
+                x: [0, (i % 2 === 0 ? -1 : 1) * (20 + Math.random() * 30)],
+                scale: [0.5, 1.5, 3]
+              }}
+              transition={{ 
+                duration: 2 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 3
+              }}
+            />
+          ))}
+        </g>
       </svg>
     </motion.div>
   );
