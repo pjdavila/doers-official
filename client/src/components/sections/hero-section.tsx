@@ -252,24 +252,14 @@ const ClassicRocket = () => {
               fill="none"
             />
             
-            {/* Destello en la punta para sensación 3D */}
+            {/* Brillo sutil en la curva para sensación 3D */}
             <path
-              d="M115 28 C118 22, 125 22, 128 28"
+              d="M115 30 C118 25, 125 25, 128 30"
               stroke="#ffffff"
-              strokeWidth="2"
-              opacity="0.7"
+              strokeWidth="1"
+              opacity="0.4"
               strokeLinecap="round"
               fill="none"
-            />
-            
-            {/* Pequeño detalle en la punta superior */}
-            <circle
-              cx="120"
-              cy="20"
-              r="3"
-              fill="#ff4400"
-              stroke="#e63c00"
-              strokeWidth="0.5"
             />
           </g>
           
