@@ -170,11 +170,7 @@ const HeroSection = () => {
           >
             {/* 3D Rocket Animation */}
             <div className="w-full h-full" style={{ position: 'relative' }}>
-              <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black bg-opacity-30 backdrop-blur-sm">
-                {/* Fondo con efecto "estrellas" */}
-                <div className="absolute inset-0">
-                  <div className="h-full w-full bg-grid-pattern"></div>
-                </div>
+              <div className="relative w-full h-full rounded-3xl overflow-hidden">{/* Fondo eliminado */}
                 
                 {/* Animación del cohete 3D */}
                 <div className="absolute inset-0 flex items-center justify-center">
