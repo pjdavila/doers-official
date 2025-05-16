@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
-// Componente de cohete 3D animado
+// Componente de cohete 3D animado con SVG
 const Rocket3D = () => {
   return (
     <motion.div className="rocket-3d">
@@ -171,12 +171,12 @@ const HeroSection = () => {
             {/* 3D Rocket Animation */}
             <div className="w-full h-full" style={{ position: 'relative' }}>
               <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black bg-opacity-30 backdrop-blur-sm">
-                {/* Animated stars background */}
+                {/* Fondo con efecto "estrellas" */}
                 <div className="absolute inset-0">
-                  <div className="stars-container h-full w-full"></div>
+                  <div className="h-full w-full bg-grid-pattern"></div>
                 </div>
                 
-                {/* 3D Rocket animation */}
+                {/* Animación del cohete 3D */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div 
                     className="w-64 h-64"
@@ -196,13 +196,36 @@ const HeroSection = () => {
                     <Rocket3D />
                   </motion.div>
                 </div>
+                
+                {/* Efecto de partículas/estrellas */}
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(20)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white rounded-full"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        top: `${Math.random() * 100}%`,
+                      }}
+                      animate={{
+                        opacity: [0, 1, 0],
+                        scale: [0, 1, 0],
+                      }}
+                      transition={{
+                        duration: 2 + Math.random() * 3,
+                        repeat: Infinity,
+                        delay: Math.random() * 5,
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
               
-              {/* Tech elements floating around - these will be visible while Spline loads */}
+              {/* Elementos tecnológicos flotantes alrededor del cohete */}
               <motion.div 
-                className="absolute top-1/4 right-1/4 z-10"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-1/4 right-1/4 z-20"
+                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
                 <div className="w-20 h-20 rounded-full bg-purple bg-opacity-20 backdrop-blur-md flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7A3FFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -213,14 +236,29 @@ const HeroSection = () => {
               </motion.div>
               
               <motion.div 
-                className="absolute bottom-1/3 left-1/4 z-10"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
+                className="absolute bottom-1/3 left-1/4 z-20"
+                animate={{ scale: [1, 1.1, 1], y: [0, -10, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.7 }}
               >
                 <div className="w-16 h-16 rounded-full bg-orange bg-opacity-20 backdrop-blur-md flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
                     <path d="M12 18h.01" />
+                  </svg>
+                </div>
+              </motion.div>
+              
+              {/* Elemento flotante adicional */}
+              <motion.div 
+                className="absolute top-1/3 left-1/5 z-20"
+                animate={{ scale: [1, 1.2, 1], rotate: [0, -10, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+              >
+                <div className="w-14 h-14 rounded-full bg-blue-500 bg-opacity-20 backdrop-blur-md flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                   </svg>
                 </div>
               </motion.div>
