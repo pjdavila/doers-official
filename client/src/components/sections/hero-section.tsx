@@ -3,8 +3,86 @@ import Reveal from "@/components/animations/reveal";
 import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import SplineScene from "@/components/animations/spline-scene";
-import splineSceneFile from "@assets/images/scene.splinecode";
+
+// Componente de cohete 3D animado
+const Rocket3D = () => {
+  return (
+    <motion.div className="rocket-3d">
+      <svg viewBox="0 0 200 320" width="100%" height="100%" className="w-full h-full">
+        {/* Cuerpo del cohete */}
+        <motion.path 
+          d="M100 10 L140 150 L140 260 C140 280 120 280 100 280 C80 280 60 280 60 260 L60 150 Z" 
+          fill="#333"
+          stroke="#444"
+          strokeWidth="2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        />
+        
+        {/* Ventana del cohete */}
+        <motion.circle 
+          cx="100" 
+          cy="90" 
+          r="20" 
+          fill="#7A3FFF" 
+          stroke="#fff" 
+          strokeWidth="3"
+          animate={{ opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+        
+        {/* Aletas del cohete */}
+        <motion.path 
+          d="M60 200 L20 270 L60 270 Z" 
+          fill="#FF5A1F" 
+          stroke="#FF5A1F" 
+          strokeWidth="2"
+          initial={{ rotate: -10, x: -5 }}
+          animate={{ rotate: 0, x: 0 }}
+          transition={{ duration: 0.5 }}
+        />
+        <motion.path 
+          d="M140 200 L180 270 L140 270 Z" 
+          fill="#FF5A1F" 
+          stroke="#FF5A1F" 
+          strokeWidth="2"
+          initial={{ rotate: 10, x: 5 }}
+          animate={{ rotate: 0, x: 0 }}
+          transition={{ duration: 0.5 }}
+        />
+        
+        {/* Propulsores - Fuego animado */}
+        <motion.path 
+          d="M80 280 L70 320 L100 300 L130 320 L120 280" 
+          fill="#FF5A1F" 
+          animate={{ 
+            d: [
+              "M80 280 L70 320 L100 300 L130 320 L120 280",
+              "M80 280 L75 340 L100 310 L125 340 L120 280",
+              "M80 280 L70 320 L100 300 L130 320 L120 280"
+            ],
+            fill: ["#FF5A1F", "#FFD700", "#FF5A1F"]
+          }}
+          transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        {/* Destellos */}
+        <motion.circle 
+          cx="100" 
+          cy="320" 
+          r="5" 
+          fill="#fff" 
+          animate={{ 
+            opacity: [0, 1, 0],
+            r: [3, 8, 3]
+          }}
+          transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+        />
+      </svg>
+    </motion.div>
+  );
+};
 
 const HeroSection = () => {
   const { t } = useTranslation();
@@ -90,33 +168,34 @@ const HeroSection = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Spline 3D Scene via iframe */}
+            {/* 3D Rocket Animation */}
             <div className="w-full h-full" style={{ position: 'relative' }}>
-              <div className="relative w-full h-full">
-                <iframe
-                  src="https://my.spline.design/rocket-60aa42ea70c39fcb7da106cddb7784de/?zoom=0.2"
-                  className={`w-full h-[120%] -mt-10 rounded-3xl transition-opacity duration-500 ${splineLoading ? 'opacity-0' : 'opacity-100'}`}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; vr"
-                  title="DOERS 3D Scene"
-                  style={{ transform: 'translateY(-5%)' }}
-                />
+              <div className="relative w-full h-full rounded-3xl overflow-hidden bg-black bg-opacity-30 backdrop-blur-sm">
+                {/* Animated stars background */}
+                <div className="absolute inset-0">
+                  <div className="stars-container h-full w-full"></div>
+                </div>
                 
-                {/* Loading indicator */}
-                {splineLoading && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <motion.div 
-                      className="w-20 h-20 rounded-full border-4 border-t-transparent border-purple"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                    />
-                    <motion.div 
-                      className="absolute w-12 h-12 rounded-full border-4 border-t-transparent border-orange"
-                      animate={{ rotate: -360 }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    />
-                  </div>
-                )}
+                {/* 3D Rocket animation */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div 
+                    className="w-64 h-64"
+                    initial={{ opacity: 0 }}
+                    animate={{ 
+                      opacity: 1,
+                      y: [10, -10, 10],
+                      rotate: [0, 3, 0, -3, 0]
+                    }}
+                    transition={{ 
+                      duration: 4, 
+                      repeat: Infinity, 
+                      ease: "easeInOut",
+                      opacity: { duration: 0.5 }
+                    }}
+                  >
+                    <Rocket3D />
+                  </motion.div>
+                </div>
               </div>
               
               {/* Tech elements floating around - these will be visible while Spline loads */}
