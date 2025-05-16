@@ -2,20 +2,13 @@ import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
 import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import SplineScene from "@/components/animations/spline-scene";
+import splineSceneFile from "@assets/images/scene.splinecode";
 
 const HeroSection = () => {
   const { t } = useTranslation();
   const [splineLoading, setSplineLoading] = useState(true);
-  
-  // Simular la finalización de la carga de Spline después de un tiempo
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setSplineLoading(false);
-    }, 3000);
-    
-    return () => clearTimeout(timer);
-  }, []);
   
   return (
     <section className="min-h-screen relative overflow-hidden flex items-center" id="hero">
