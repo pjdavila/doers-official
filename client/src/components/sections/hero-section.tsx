@@ -216,30 +216,60 @@ const ClassicRocket = () => {
             ))}
           </g>
           
-          {/* Nariz del cohete con efecto cónico 3D */}
+          {/* Nariz del cohete con efecto cónico 3D mejorado con curva perfecta */}
           <g>
+            {/* Forma exterior principal */}
             <path
-              d="M85 80 C85 30, 120 10, 155 80 Z"
+              d="M85 80 
+                 C85 65, 90 45, 100 30 
+                 C110 15, 130 15, 140 30 
+                 C150 45, 155 65, 155 80 Z"
               fill="url(#orangeGradient)"
               stroke="#e64d00"
               strokeWidth="1"
               filter="url(#softShadow)"
             />
             
-            {/* Sombra para el efecto 3D en la nariz */}
+            {/* Sombra para el efecto 3D en la nariz - lado izquierdo */}
             <path
-              d="M85 80 C90 40, 105 20, 120 35 L120 80 Z"
+              d="M85 80 
+                 C85 65, 90 45, 100 30 
+                 C105 22, 115 18, 120 25 
+                 L120 80 Z"
               fill="#000000"
               opacity="0.1"
             />
             
-            {/* Brillo en la punta */}
+            {/* Brillo del lado derecho para realzar la curvatura */}
             <path
-              d="M115 40 C118 30, 125 25, 130 35"
+              d="M120 25 
+                C125 18, 135 20, 140 30 
+                C145 40, 150 55, 150 75"
+              stroke="#ffffff"
+              strokeWidth="1.5"
+              opacity="0.5"
+              strokeLinecap="round"
+              fill="none"
+            />
+            
+            {/* Destello en la punta para sensación 3D */}
+            <path
+              d="M115 28 C118 22, 125 22, 128 28"
               stroke="#ffffff"
               strokeWidth="2"
-              opacity="0.6"
+              opacity="0.7"
               strokeLinecap="round"
+              fill="none"
+            />
+            
+            {/* Pequeño detalle en la punta superior */}
+            <circle
+              cx="120"
+              cy="20"
+              r="3"
+              fill="#ff4400"
+              stroke="#e63c00"
+              strokeWidth="0.5"
             />
           </g>
           
