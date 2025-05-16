@@ -4,256 +4,196 @@ import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
-// Componente de nave espacial estilo Star Wars
-const Rocket3D = () => {
+// Componente de cohete clásico estilo cartoon
+const ClassicRocket = () => {
   return (
     <motion.div className="rocket-3d">
       <svg viewBox="0 0 240 400" width="100%" height="100%" className="w-full h-full">
-        {/* Capa de efectos de iluminación */}
+        {/* Efectos de iluminación y gradientes */}
         <defs>
           <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="10" result="blur" />
+            <feGaussianBlur stdDeviation="8" result="blur" />
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
-          <linearGradient id="metallic" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#666666" />
-            <stop offset="50%" stopColor="#dddddd" />
-            <stop offset="100%" stopColor="#444444" />
+          
+          <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ff3333" />
+            <stop offset="50%" stopColor="#ff0000" />
+            <stop offset="100%" stopColor="#cc0000" />
           </linearGradient>
-          <linearGradient id="cockpitGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#7A3FFF" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#473290" stopOpacity="0.9" />
+          
+          <linearGradient id="whiteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ffffff" />
+            <stop offset="50%" stopColor="#f5f5f5" />
+            <stop offset="100%" stopColor="#e0e0e0" />
           </linearGradient>
-          <radialGradient id="thrusterGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
-            <stop offset="0%" stopColor="#ffcc00" stopOpacity="1" />
-            <stop offset="70%" stopColor="#ff5a1f" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#ff0000" stopOpacity="0" />
+          
+          <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#66ccff" />
+            <stop offset="50%" stopColor="#33aaff" />
+            <stop offset="100%" stopColor="#0088cc" />
+          </linearGradient>
+          
+          <radialGradient id="fireGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+            <stop offset="0%" stopColor="#ffff00" stopOpacity="1" />
+            <stop offset="40%" stopColor="#ffcc00" stopOpacity="0.9" />
+            <stop offset="70%" stopColor="#ff6600" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#ff3300" stopOpacity="0" />
           </radialGradient>
+          
+          <filter id="softShadow">
+            <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#222" />
+          </filter>
         </defs>
 
-        {/* Cuerpo principal - nave espacial estilizada */}
-        <motion.path
-          d="M120 10 
-            L145 60 L160 70 L170 100 L170 220
-            L150 255 L120 260 L90 255 L70 220
-            L70 100 L80 70 L95 60 Z"
-          fill="url(#metallic)"
-          stroke="#333"
-          strokeWidth="2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        />
-        
-        {/* Carcasa frontal y detalles de la nave */}
-        <motion.path
-          d="M120 10 L135 40 L105 40 Z"
-          fill="#555"
-          stroke="#444"
-          strokeWidth="1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7 }}
-        />
-        
-        {/* Líneas de detalle en el cuerpo */}
-        <motion.path 
-          d="M120 10 L120 260"
-          stroke="#444"
-          strokeWidth="1"
-          strokeDasharray="5 8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ duration: 1 }}
-        />
-        
-        {/* Paneles laterales con detalles metálicos */}
-        <motion.path 
-          d="M90 70 L150 70 L145 220 L95 220 Z"
-          fill="none"
-          stroke="#666"
-          strokeWidth="1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.6 }}
-          transition={{ duration: 1 }}
-        />
-        
-        {/* Detalles de panel de control */}
-        <motion.rect
-          x="100"
-          y="110"
-          width="40"
-          height="10"
-          rx="2"
-          fill="#222"
-          stroke="#444"
-          strokeWidth="1"
-        />
-        <motion.rect
-          x="105"
-          y="130"
-          width="30"
-          height="5"
-          rx="1"
-          fill="#7A3FFF"
-          animate={{ opacity: [0.6, 1, 0.6] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-        
-        {/* Cabina de mando con efecto brillante */}
-        <motion.ellipse 
-          cx="120" 
-          cy="55" 
-          rx="22" 
-          ry="12" 
-          fill="url(#cockpitGlow)" 
-          filter="url(#glow)"
-          initial={{ opacity: 0.7 }}
+        {/* Zona de fuego del cohete */}
+        <motion.g
           animate={{ 
-            opacity: [0.7, 1, 0.7],
-            rx: [22, 23, 22],
-            ry: [12, 13, 12]
+            y: [0, -3, 0]
           }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        {/* Alas más aerodinámicas estilo TIE fighter/X-wing híbrido */}
-        <motion.path 
-          d="M70 120 L30 180 L40 200 L80 170 L70 120" 
-          fill="#333"
-          stroke="#444"
-          strokeWidth="1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        />
-        
-        <motion.path 
-          d="M170 120 L210 180 L200 200 L160 170 L170 120" 
-          fill="#333"
-          stroke="#444"
-          strokeWidth="1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        />
-        
-        {/* Armamento - cañones láser */}
-        <motion.rect
-          x="50"
-          y="150"
-          width="25"
-          height="5"
-          fill="#222"
-          stroke="#333"
-          strokeWidth="1"
-        />
-        <motion.rect
-          x="165"
-          y="150"
-          width="25"
-          height="5"
-          fill="#222"
-          stroke="#333"
-          strokeWidth="1"
-        />
-        
-        {/* Puntos de energía en las alas */}
-        <motion.circle 
-          cx="35" 
-          cy="185" 
-          r="5" 
-          fill="#7A3FFF" 
-          filter="url(#glow)"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-        <motion.circle 
-          cx="205" 
-          cy="185" 
-          r="5" 
-          fill="#7A3FFF" 
-          filter="url(#glow)"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-        />
-        
-        {/* Propulsores - avanzados con efecto de energía */}
-        <motion.g>
-          {/* Propulsor izquierdo */}
-          <motion.ellipse 
-            cx="90" 
-            cy="270" 
-            rx="15" 
-            ry="8" 
-            fill="#222"
-            stroke="#444"
-            strokeWidth="1"
-          />
-          <motion.ellipse 
-            cx="90" 
-            cy="270" 
-            rx="10" 
-            ry="5" 
-            fill="#111"
-          />
+          transition={{ 
+            duration: 0.5, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+        >
+          {/* Fuego del cohete */}
           <motion.path 
-            d="M80 270 L70 350 L90 320 L110 350 L100 270" 
-            fill="url(#thrusterGlow)"
+            d="M120 290 
+               C100 310, 90 340, 120 370 
+               C150 340, 140 310, 120 290 Z" 
+            fill="url(#fireGradient)"
             filter="url(#glow)"
             animate={{ 
               d: [
-                "M80 270 L70 350 L90 320 L110 350 L100 270",
-                "M80 270 L75 380 L90 335 L105 380 L100 270",
-                "M80 270 L70 350 L90 320 L110 350 L100 270"
-              ],
+                "M120 290 C100 310, 90 340, 120 370 C150 340, 140 310, 120 290 Z",
+                "M120 290 C100 315, 95 345, 120 380 C145 345, 140 315, 120 290 Z",
+                "M120 290 C100 310, 90 340, 120 370 C150 340, 140 310, 120 290 Z"
+              ]
             }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 0.8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        
+          {/* Cuerpo principal del cohete - parte inferior (base) */}
+          <motion.path
+            d="M90 240 L90 290 L150 290 L150 240 Z"
+            fill="#333333"
+            stroke="#222222"
+            strokeWidth="1"
+          />
+        
+          {/* Cuerpo principal del cohete - parte central */}
+          <motion.ellipse
+            cx="120"
+            cy="240"
+            rx="30"
+            ry="5"
+            fill="#333333"
+            stroke="#222222"
+            strokeWidth="1"
+          />
+        
+          {/* Cuerpo principal del cohete - parte blanca */}
+          <motion.path
+            d="M90 100 L90 240 
+               A30 10 0 0 0 150 240
+               L150 100 Z"
+            fill="url(#whiteGradient)"
+            stroke="#bbbbbb"
+            strokeWidth="1"
+            filter="url(#softShadow)"
           />
           
-          {/* Propulsor derecho */}
-          <motion.ellipse 
-            cx="150" 
-            cy="270" 
-            rx="15" 
-            ry="8" 
-            fill="#222"
-            stroke="#444"
+          {/* Nariz roja del cohete */}
+          <motion.path
+            d="M90 100 C90 50, 120 20, 150 100 Z"
+            fill="url(#redGradient)"
+            stroke="#cc0000"
+            strokeWidth="1"
+            filter="url(#softShadow)"
+          />
+          
+          {/* Ventana/portilla circular */}
+          <motion.circle
+            cx="120"
+            cy="150"
+            r="20"
+            fill="url(#blueGradient)"
+            stroke="#999999"
+            strokeWidth="3"
+            filter="url(#softShadow)"
+            animate={{ 
+              opacity: [0.9, 1, 0.9]
+            }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          />
+          
+          {/* Brillo de la ventana */}
+          <motion.circle
+            cx="115"
+            cy="145"
+            r="5"
+            fill="#ffffff"
+            opacity="0.7"
+          />
+          
+          {/* Aletas laterales rojas */}
+          <motion.path
+            d="M150 180 L190 240 L150 240 Z"
+            fill="url(#redGradient)"
+            stroke="#cc0000"
+            strokeWidth="1"
+            filter="url(#softShadow)"
+          />
+          
+          <motion.path
+            d="M90 180 L50 240 L90 240 Z"
+            fill="url(#redGradient)"
+            stroke="#cc0000"
+            strokeWidth="1"
+            filter="url(#softShadow)"
+          />
+          
+          {/* Aleta central roja */}
+          <motion.path
+            d="M120 240 L120 200 L90 240 L150 240 Z"
+            fill="url(#redGradient)"
+            stroke="#cc0000"
+            strokeWidth="1"
+            filter="url(#softShadow)"
+          />
+          
+          {/* Detalles del cohete - línea de separación */}
+          <motion.path
+            d="M90 170 L150 170"
+            stroke="#cccccc"
             strokeWidth="1"
           />
-          <motion.ellipse 
-            cx="150" 
-            cy="270" 
-            rx="10" 
-            ry="5" 
-            fill="#111"
-          />
-          <motion.path 
-            d="M140 270 L130 350 L150 320 L170 350 L160 270" 
-            fill="url(#thrusterGlow)"
-            filter="url(#glow)"
-            animate={{ 
-              d: [
-                "M140 270 L130 350 L150 320 L170 350 L160 270",
-                "M140 270 L135 380 L150 335 L165 380 L160 270",
-                "M140 270 L130 350 L150 320 L170 350 L160 270"
-              ],
-            }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-          />
+          
+          {/* Remaches/tornillos decorativos */}
+          {[...Array(8)].map((_, i) => (
+            <motion.circle 
+              key={i}
+              cx={i % 2 === 0 ? 95 : 145}
+              cy={130 + i * 15}
+              r={2}
+              fill="#999999"
+            />
+          ))}
         </motion.g>
-        
-        {/* Partículas de propulsión */}
-        {[...Array(8)].map((_, i) => (
+
+        {/* Partículas de fuego */}
+        {[...Array(12)].map((_, i) => (
           <motion.circle 
             key={i}
-            cx={90 + Math.random() * 60}
-            cy={330 + Math.random() * 50}
-            r={1 + Math.random() * 3}
-            fill="#ffcc00"
+            cx={105 + Math.random() * 30}
+            cy={330 + Math.random() * 40}
+            r={2 + Math.random() * 3}
+            fill={i % 2 === 0 ? "#ffcc00" : "#ff6600"}
             animate={{ 
               opacity: [0, 0.8, 0],
-              y: [0, 70 + Math.random() * 30],
+              y: [0, 40 + Math.random() * 50],
+              x: [(Math.random() - 0.5) * 20, (Math.random() - 0.5) * 40],
               scale: [1, 0.5, 0]
             }}
             transition={{ 
@@ -263,32 +203,6 @@ const Rocket3D = () => {
             }}
           />
         ))}
-
-        {/* Luces de la nave */}
-        <motion.circle 
-          cx="40" 
-          cy="120" 
-          r="3" 
-          fill="#ff0000" 
-          animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.circle 
-          cx="180" 
-          cy="120" 
-          r="3" 
-          fill="#ff0000" 
-          animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        />
-        <motion.circle 
-          cx="120" 
-          cy="40" 
-          r="3" 
-          fill="#00ff00" 
-          animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
       </svg>
     </motion.div>
   );
@@ -296,7 +210,6 @@ const Rocket3D = () => {
 
 const HeroSection = () => {
   const { t } = useTranslation();
-  const [splineLoading, setSplineLoading] = useState(true);
   
   return (
     <section className="min-h-screen relative overflow-hidden flex items-center" id="hero">
@@ -378,34 +291,33 @@ const HeroSection = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* 3D Rocket Animation */}
+            {/* Animación del cohete 3D estilo cartoon */}
             <div className="w-full h-full" style={{ position: 'relative' }}>
-              <div className="relative w-full h-full rounded-3xl overflow-hidden">{/* Fondo eliminado */}
+              <div className="relative w-full h-full rounded-3xl overflow-hidden">
                 
-                {/* Animación del cohete 3D */}
+                {/* Animación del cohete clásico */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <motion.div 
-                    className="w-64 h-64"
+                    className="w-72 h-72 md:w-96 md:h-96"
                     initial={{ opacity: 0 }}
                     animate={{ 
                       opacity: 1,
-                      y: [10, -10, 10],
-                      rotate: [0, 3, 0, -3, 0]
+                      y: [0, -20, 0],
                     }}
                     transition={{ 
-                      duration: 4, 
+                      duration: 5, 
                       repeat: Infinity, 
                       ease: "easeInOut",
                       opacity: { duration: 0.5 }
                     }}
                   >
-                    <Rocket3D />
+                    <ClassicRocket />
                   </motion.div>
                 </div>
                 
-                {/* Efecto de partículas/estrellas */}
+                {/* Efecto de estrellas en el fondo */}
                 <div className="absolute inset-0 pointer-events-none">
-                  {[...Array(20)].map((_, i) => (
+                  {[...Array(30)].map((_, i) => (
                     <motion.div
                       key={i}
                       className="absolute w-1 h-1 bg-white rounded-full"
@@ -414,7 +326,7 @@ const HeroSection = () => {
                         top: `${Math.random() * 100}%`,
                       }}
                       animate={{
-                        opacity: [0, 1, 0],
+                        opacity: [0, 0.8, 0],
                         scale: [0, 1, 0],
                       }}
                       transition={{
@@ -450,21 +362,6 @@ const HeroSection = () => {
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF5A1F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
                     <path d="M12 18h.01" />
-                  </svg>
-                </div>
-              </motion.div>
-              
-              {/* Elemento flotante adicional */}
-              <motion.div 
-                className="absolute top-1/3 left-1/5 z-20"
-                animate={{ scale: [1, 1.2, 1], rotate: [0, -10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-              >
-                <div className="w-14 h-14 rounded-full bg-blue-500 bg-opacity-20 backdrop-blur-md flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B82F6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                   </svg>
                 </div>
               </motion.div>
