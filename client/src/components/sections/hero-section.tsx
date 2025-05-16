@@ -31,12 +31,12 @@ const Rocket3D = () => {
           </radialGradient>
         </defs>
 
-        {/* Cuerpo principal - estilo X-wing/Halcón Milenario fusionado */}
+        {/* Cuerpo principal - nave espacial estilizada */}
         <motion.path
-          d="M120 20 
-            L150 80 L170 80 L180 100 L180 240 
-            L160 260 L140 270 L100 270 L80 270 
-            L60 260 L40 240 L40 100 L50 80 L70 80 Z"
+          d="M120 10 
+            L145 60 L160 70 L170 100 L170 220
+            L150 255 L120 260 L90 255 L70 220
+            L70 100 L80 70 L95 60 Z"
           fill="url(#metallic)"
           stroke="#333"
           strokeWidth="2"
@@ -45,92 +45,138 @@ const Rocket3D = () => {
           transition={{ duration: 0.5 }}
         />
         
-        {/* Detalles del cuerpo - paneles y líneas */}
-        <motion.path 
-          d="M120 20 L120 270"
+        {/* Carcasa frontal y detalles de la nave */}
+        <motion.path
+          d="M120 10 L135 40 L105 40 Z"
+          fill="#555"
           stroke="#444"
           strokeWidth="1"
-          strokeDasharray="5 5"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.7 }}
+        />
+        
+        {/* Líneas de detalle en el cuerpo */}
+        <motion.path 
+          d="M120 10 L120 260"
+          stroke="#444"
+          strokeWidth="1"
+          strokeDasharray="5 8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
           transition={{ duration: 1 }}
         />
+        
+        {/* Paneles laterales con detalles metálicos */}
         <motion.path 
-          d="M80 100 L160 100"
-          stroke="#444"
+          d="M90 70 L150 70 L145 220 L95 220 Z"
+          fill="none"
+          stroke="#666"
           strokeWidth="1"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
+          animate={{ opacity: 0.6 }}
           transition={{ duration: 1 }}
         />
-        <motion.path 
-          d="M70 150 L170 150"
+        
+        {/* Detalles de panel de control */}
+        <motion.rect
+          x="100"
+          y="110"
+          width="40"
+          height="10"
+          rx="2"
+          fill="#222"
           stroke="#444"
           strokeWidth="1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
-          transition={{ duration: 1 }}
+        />
+        <motion.rect
+          x="105"
+          y="130"
+          width="30"
+          height="5"
+          rx="1"
+          fill="#7A3FFF"
+          animate={{ opacity: [0.6, 1, 0.6] }}
+          transition={{ duration: 2, repeat: Infinity }}
         />
         
         {/* Cabina de mando con efecto brillante */}
         <motion.ellipse 
           cx="120" 
-          cy="70" 
-          rx="25" 
-          ry="15" 
+          cy="55" 
+          rx="22" 
+          ry="12" 
           fill="url(#cockpitGlow)" 
           filter="url(#glow)"
+          initial={{ opacity: 0.7 }}
           animate={{ 
             opacity: [0.7, 1, 0.7],
-            rx: [25, 26, 25],
-            ry: [15, 16, 15]
+            rx: [22, 23, 22],
+            ry: [12, 13, 12]
           }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
         />
         
-        {/* Alas de la nave - inspiradas en X-wing */}
+        {/* Alas más aerodinámicas estilo TIE fighter/X-wing híbrido */}
         <motion.path 
-          d="M40 130 L10 180 L30 200 L40 160 Z" 
+          d="M70 120 L30 180 L40 200 L80 170 L70 120" 
           fill="#333"
           stroke="#444"
           strokeWidth="1"
-          initial={{ opacity: 0, rotate: -5, x: -5 }}
-          animate={{ opacity: 1, rotate: 0, x: 0 }}
-          transition={{ duration: 0.8 }}
-        />
-        <motion.path 
-          d="M180 130 L210 180 L190 200 L180 160 Z" 
-          fill="#333"
-          stroke="#444"
-          strokeWidth="1"
-          initial={{ opacity: 0, rotate: 5, x: 5 }}
-          animate={{ opacity: 1, rotate: 0, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         />
         
-        {/* Segunda par de alas - más pequeñas, abajo */}
         <motion.path 
-          d="M60 210 L20 240 L40 250 L60 220 Z" 
+          d="M170 120 L210 180 L200 200 L160 170 L170 120" 
           fill="#333"
           stroke="#444"
           strokeWidth="1"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
         />
-        <motion.path 
-          d="M160 210 L200 240 L180 250 L160 220 Z" 
-          fill="#333"
-          stroke="#444"
+        
+        {/* Armamento - cañones láser */}
+        <motion.rect
+          x="50"
+          y="150"
+          width="25"
+          height="5"
+          fill="#222"
+          stroke="#333"
           strokeWidth="1"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
         />
-
-        {/* Detalles tecnológicos en las alas */}
-        <motion.circle cx="30" cy="185" r="5" fill="#7A3FFF" />
-        <motion.circle cx="190" cy="185" r="5" fill="#7A3FFF" />
+        <motion.rect
+          x="165"
+          y="150"
+          width="25"
+          height="5"
+          fill="#222"
+          stroke="#333"
+          strokeWidth="1"
+        />
+        
+        {/* Puntos de energía en las alas */}
+        <motion.circle 
+          cx="35" 
+          cy="185" 
+          r="5" 
+          fill="#7A3FFF" 
+          filter="url(#glow)"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        />
+        <motion.circle 
+          cx="205" 
+          cy="185" 
+          r="5" 
+          fill="#7A3FFF" 
+          filter="url(#glow)"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+        />
         
         {/* Propulsores - avanzados con efecto de energía */}
         <motion.g>
