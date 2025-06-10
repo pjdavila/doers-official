@@ -57,7 +57,7 @@ const HeroSection = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="font-bebas text-5xl md:text-7xl xl:text-8xl leading-none mb-6">
+            <h1 className="font-bebas text-5xl md:text-7xl xl:text-8xl leading-tight mb-6">
               {t('hero.title.you')} <span className="text-orange drop-shadow-[0_0_10px_rgba(255,90,31,0.5)]">{t('hero.title.dream')}</span> {t('hero.title.it')},<br/>
               {t('hero.title.we')} <span className="text-purple drop-shadow-[0_0_10px_rgba(122,63,255,0.5)]">{t('hero.title.do')}</span> {t('hero.title.it')}.
             </h1>
