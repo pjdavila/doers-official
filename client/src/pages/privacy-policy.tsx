@@ -101,9 +101,7 @@ const PrivacyPolicy = () => {
                 {t('privacy.contact.content')}
               </p>
               <div className="bg-black/30 p-4 rounded-lg">
-                <p className="font-space text-orange">
-                  Email: privacy@doers.dev
-                </p>
+                <p className="font-space text-orange">Email: info@doers.dev</p>
               </div>
             </motion.section>
 
