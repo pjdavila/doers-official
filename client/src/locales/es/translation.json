@@ -147,7 +147,48 @@
       "twitter": "Twitter",
       "linkedin": "LinkedIn",
       "facebook": "Facebook"
-    }
+    },
+    "privacy": "Política de Privacidad"
+  },
+  "privacy": {
+    "title": "POLÍTICA DE PRIVACIDAD",
+    "section1": {
+      "title": "Información que Recopilamos",
+      "content": "En DOERS, respetamos tu privacidad y nos comprometemos a proteger tu información personal. Esta política explica cómo recopilamos, usamos y protegemos tu información cuando visitas nuestro sitio web o utilizas nuestros servicios."
+    },
+    "section2": {
+      "title": "Tipos de Información",
+      "content": "Recopilamos los siguientes tipos de información:",
+      "item1": "Información de contacto (nombre, email, teléfono)",
+      "item2": "Información del proyecto y requisitos",
+      "item3": "Datos de navegación y uso del sitio web",
+      "item4": "Información técnica sobre tu dispositivo y navegador"
+    },
+    "section3": {
+      "title": "Uso de la Información",
+      "content": "Utilizamos tu información para proporcionar nuestros servicios, comunicarnos contigo sobre tu proyecto, mejorar nuestros servicios y cumplir con obligaciones legales. No vendemos ni compartimos tu información personal con terceros sin tu consentimiento."
+    },
+    "section4": {
+      "title": "Protección de Datos",
+      "content": "Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger tu información personal contra acceso no autorizado, alteración, divulgación o destrucción."
+    },
+    "section5": {
+      "title": "Cookies",
+      "content": "Utilizamos cookies y tecnologías similares para mejorar tu experiencia en nuestro sitio web, analizar el tráfico y personalizar el contenido. Puedes controlar el uso de cookies a través de la configuración de tu navegador."
+    },
+    "section6": {
+      "title": "Tus Derechos",
+      "content": "Tienes derecho a acceder, corregir, eliminar o limitar el procesamiento de tu información personal. También puedes oponerte al procesamiento o solicitar la portabilidad de tus datos."
+    },
+    "section7": {
+      "title": "Cambios a esta Política",
+      "content": "Podemos actualizar esta política de privacidad ocasionalmente. Te notificaremos sobre cambios significativos a través de nuestro sitio web o por email."
+    },
+    "contact": {
+      "title": "Contacto",
+      "content": "Si tienes preguntas sobre esta política de privacidad o el manejo de tu información personal, contáctanos:"
+    },
+    "lastUpdated": "Última actualización: Enero 2024"
   },
   "language": {
     "en": "Inglés",

@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
+import PrivacyPolicy from "@/pages/privacy-policy";
 import CustomCursor from "@/components/custom-cursor";
 import ProgressBar from "@/components/progress-bar";
 import { AnimatePresence } from "framer-motion";
@@ -13,6 +14,7 @@ function Router() {
     <AnimatePresence mode="wait">
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route component={NotFound} />
       </Switch>
     </AnimatePresence>

@@ -22,6 +22,7 @@ const Footer = () => {
             <a href="#work" className="text-gray hover:text-white transition-colors font-space text-sm">{t('header.navigation.work')}</a>
             <a href="#about" className="text-gray hover:text-white transition-colors font-space text-sm">{t('header.navigation.about')}</a>
             <a href="#contact" className="text-gray hover:text-white transition-colors font-space text-sm">{t('header.navigation.contact')}</a>
+            <Link href="/privacy-policy" className="text-gray hover:text-white transition-colors font-space text-sm">{t('footer.privacy')}</Link>
           </nav>
         </div>
         
