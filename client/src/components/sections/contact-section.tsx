@@ -114,7 +114,7 @@ const ContactSection = () => {
                       <div className="bg-purple bg-opacity-10 w-12 h-12 rounded-full flex items-center justify-center">
                         <Phone className="text-purple" />
                       </div>
-                      <a href="tel:+17875922402" className="text-white hover:text-purple transition-colors">+1 (787) 592-2402</a>
+                      <a href="tel:+17876899275" className="text-white hover:text-purple transition-colors">+1 (787) 689-9275</a>
                     </div>
                   </div>
                   
