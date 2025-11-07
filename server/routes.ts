@@ -3,6 +3,7 @@ import { createServer, type Server } from "http";
 import path from "path";
 import fs from "fs";
 import { storage } from "./storage";
+import { emailService } from "./email-service";
 import { insertContactSchema } from "@shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
@@ -30,7 +31,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/contact", async (req: Request, res: Response) => {
     try {
       const contactData = insertContactSchema.parse(req.body);
+      
+      // Save to storage
       const contact = await storage.createContact(contactData);
+      
+      // Send email notification to DOERS team
+      const emailSent = await emailService.sendContactFormEmail({
+        name: contactData.name,
+        email: contactData.email,
+        company: contactData.company,
+        projectType: contactData.projectType,
+        message: contactData.message,
+      });
+
+      if (!emailSent) {
+        console.warn('Contact form submitted but email notification failed');
+      }
       
       res.status(201).json({
         message: "Contact form submitted successfully",
@@ -45,6 +61,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       
+      console.error('Contact form error:', error);
       res.status(500).json({
         message: "An error occurred while submitting the contact form"
       });
