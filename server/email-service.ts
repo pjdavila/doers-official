@@ -93,14 +93,19 @@ ${data.message}
 This email was sent from the DOERS contact form
       `;
 
-      const result = await this.resend.emails.send({
+      const { data: result, error } = await this.resend.emails.send({
         from: senderEmail,
         to: 'info@doers.dev',
-        replyTo: data.email,
+        reply_to: data.email,
         subject: `New Contact Form: ${projectTypeName} - ${data.company}`,
         text: textContent,
         html: htmlContent,
-      });
+      } as any);
+
+      if (error) {
+        console.error('Email send error:', error);
+        return false;
+      }
 
       console.log(`Contact form email sent successfully to info@doers.dev from ${data.email}`, result);
       return true;
@@ -126,13 +131,18 @@ This email was sent from the DOERS contact form
         throw new Error('Invalid recipient email address');
       }
 
-      const result = await this.resend.emails.send({
+      const { data: result, error } = await this.resend.emails.send({
         from: senderEmail,
         to,
         subject,
         text,
         html: html || `<p>${text}</p>`,
       });
+
+      if (error) {
+        console.error('Email send error:', error);
+        return false;
+      }
 
       console.log(`Email sent successfully to ${to}`, result);
       return true;
