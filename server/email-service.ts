@@ -1,12 +1,14 @@
-import sgMail from '@sendgrid/mail';
+import { Resend } from 'resend';
 
 export class EmailService {
+  private resend: Resend;
+
   constructor() {
-    const apiKey = process.env.SENDGRID_API_KEY;
+    const apiKey = process.env.RESEND_API_KEY;
     if (!apiKey) {
-      throw new Error('SENDGRID_API_KEY environment variable is not set');
+      throw new Error('RESEND_API_KEY environment variable is not set');
     }
-    sgMail.setApiKey(apiKey);
+    this.resend = new Resend(apiKey);
   }
 
   private validateEmail(email: string): boolean {
@@ -91,20 +93,19 @@ ${data.message}
 This email was sent from the DOERS contact form
       `;
 
-      const msg = {
-        to: 'info@doers.dev',
+      const result = await this.resend.emails.send({
         from: senderEmail,
-        replyTo: data.email, // Allow direct reply to customer
+        to: 'info@doers.dev',
+        replyTo: data.email,
         subject: `New Contact Form: ${projectTypeName} - ${data.company}`,
         text: textContent,
         html: htmlContent,
-      };
+      });
 
-      await sgMail.send(msg);
-      console.log(`Contact form email sent successfully to info@doers.dev from ${data.email}`);
+      console.log(`Contact form email sent successfully to info@doers.dev from ${data.email}`, result);
       return true;
     } catch (error: any) {
-      console.error('Email send error:', error.response?.body || error.message);
+      console.error('Email send error:', error.message || error);
       return false;
     }
   }
@@ -125,19 +126,18 @@ This email was sent from the DOERS contact form
         throw new Error('Invalid recipient email address');
       }
 
-      const msg = {
-        to,
+      const result = await this.resend.emails.send({
         from: senderEmail,
+        to,
         subject,
         text,
         html: html || `<p>${text}</p>`,
-      };
+      });
 
-      await sgMail.send(msg);
-      console.log(`Email sent successfully to ${to}`);
+      console.log(`Email sent successfully to ${to}`, result);
       return true;
     } catch (error: any) {
-      console.error('Email send error:', error.response?.body || error.message);
+      console.error('Email send error:', error.message || error);
       return false;
     }
   }
