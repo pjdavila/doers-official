@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import doersLogo from "../../assets/images/DOERS-Horizontal.png";
 import LanguageSwitcher from "../language-switcher";
@@ -31,9 +31,11 @@ const Header = () => {
   };
 
   const navLinks = [
+    { name: t('header.navigation.home'), href: "#" },
     { name: t('header.navigation.services'), href: "#services" },
     { name: t('header.navigation.work'), href: "#work" },
     { name: t('header.navigation.about'), href: "#about" },
+    { name: t('header.navigation.contact'), href: "#contact" },
   ];
 
   const headerClasses = `fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -42,36 +44,47 @@ const Header = () => {
 
   return (
     <header className={headerClasses}>
-      <div className="container mx-auto px-6 py-5">
-        <div className="flex justify-between items-center">
-          <Link href="#" className="flex items-center gap-2">
-            <img src={doersLogo} alt="DOERS Logo" className="h-16" />
+      <div className="container mx-auto px-6 py-4">
+        <div className="flex justify-between items-center gap-8">
+          <Link href="#" className="flex items-center gap-2 flex-shrink-0">
+            <img src={doersLogo} alt="DOERS Logo" className="h-14" />
             <span className="hidden sm:block text-orange text-xs font-space">{t('header.since')}</span>
           </Link>
           
-          <nav className="hidden md:flex space-x-8 items-center">
-            {navLinks.map((link) => (
-              <a 
-                href={link.href} 
-                key={link.name}
-                className="relative text-white font-space tracking-wide text-sm hover:text-orange transition-colors duration-300 after:content-[''] after:absolute after:bottom-[-5px] after:left-0 after:w-0 after:h-[2px] after:bg-orange after:transition-all after:duration-300 hover:after:w-full"
-              >
-                {link.name}
-              </a>
-            ))}
+          <nav className="hidden lg:flex items-center flex-1 justify-center">
+            <div className="bg-white bg-opacity-[0.08] backdrop-blur-sm rounded-full px-2 py-2 border border-white border-opacity-10">
+              <div className="flex items-center gap-1">
+                {navLinks.map((link) => (
+                  <a 
+                    href={link.href} 
+                    key={link.name}
+                    data-testid={`nav-${link.name.toLowerCase()}`}
+                    className="relative text-white font-space text-sm px-5 py-2 rounded-full hover:bg-white hover:bg-opacity-10 transition-all duration-300"
+                  >
+                    {link.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </nav>
+
+          <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
+            <LanguageSwitcher />
             <a 
               href="#contact" 
-              className="bg-orange text-white px-5 py-2 rounded-full font-space font-medium tracking-wide text-sm hover:bg-opacity-90 transition-all"
+              data-testid="button-get-started"
+              className="bg-black text-white px-6 py-3 rounded-full font-space font-medium text-sm hover:bg-opacity-80 transition-all flex items-center gap-2 border border-white border-opacity-20"
             >
-              {t('header.cta')}
+              <span>{t('header.cta')}</span>
+              <ArrowRight size={16} />
             </a>
-            <LanguageSwitcher />
-          </nav>
+          </div>
           
           <button 
-            className="md:hidden text-white" 
+            className="lg:hidden text-white" 
             onClick={handleMobileMenuToggle}
             aria-label="Toggle mobile menu"
+            data-testid="button-mobile-menu"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>

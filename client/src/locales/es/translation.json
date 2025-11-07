@@ -2,11 +2,11 @@
   "header": {
     "since": "DESDE 2012",
     "navigation": {
-      "home": "INICIO",
-      "services": "SERVICIOS",
-      "work": "TRABAJO",
-      "about": "NOSOTROS",
-      "contact": "CONTACTO"
+      "home": "Inicio",
+      "services": "Servicios",
+      "work": "Trabajo",
+      "about": "Nosotros",
+      "contact": "Contacto"
     },
     "cta": "HABLEMOS"
   },

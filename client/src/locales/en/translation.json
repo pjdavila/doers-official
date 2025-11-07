@@ -2,11 +2,11 @@
   "header": {
     "since": "SINCE 2012",
     "navigation": {
-      "home": "HOME",
-      "services": "SERVICES",
-      "work": "WORK",
-      "about": "ABOUT",
-      "contact": "CONTACT"
+      "home": "Home",
+      "services": "Services",
+      "work": "Work",
+      "about": "About",
+      "contact": "Contact"
     },
     "cta": "LET'S TALK"
   },
