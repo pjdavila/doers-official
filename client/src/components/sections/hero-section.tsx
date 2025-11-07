@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
 import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
 import InteractiveGlobe from "@/components/animations/interactive-globe";
+import MagneticButton from "@/components/animations/magnetic-button";
+import ParticleSystem from "@/components/animations/particle-system";
+import TextReveal from "@/components/animations/text-reveal";
 
 
 
@@ -13,6 +15,9 @@ const HeroSection = () => {
   return (
     <section className="min-h-screen relative overflow-hidden flex items-center" id="hero">
       <div className="absolute top-0 left-0 w-full h-full bg-black">
+        {/* Particle System */}
+        <ParticleSystem particleCount={80} colors={['#FF5A1F', '#7A3FFF', '#FFFFFF']} />
+        
         {/* Animated background elements */}
         <motion.div 
           className="absolute top-0 right-0 w-1/2 h-full bg-purple opacity-5 blur-[150px]"
@@ -57,30 +62,58 @@ const HeroSection = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <h1 className="font-bebas text-5xl md:text-7xl xl:text-8xl leading-tight mb-6">
-              {t('hero.title.you')} <span className="text-orange drop-shadow-[0_0_10px_rgba(255,90,31,0.5)]">{t('hero.title.dream')}</span> {t('hero.title.it')},<br/>
-              {t('hero.title.we')} <span className="text-purple drop-shadow-[0_0_10px_rgba(122,63,255,0.5)]">{t('hero.title.do')}</span> {t('hero.title.it')}.
-            </h1>
-            <p className="font-space text-xl md:text-2xl text-gray mb-8 max-w-xl">
+            <motion.h1 
+              className="font-bebas text-5xl md:text-7xl xl:text-8xl leading-tight mb-6"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {t('hero.title.you')} <motion.span 
+                className="text-orange drop-shadow-[0_0_30px_rgba(255,90,31,0.6)]"
+                animate={{ 
+                  textShadow: [
+                    "0 0 30px rgba(255,90,31,0.6)",
+                    "0 0 50px rgba(255,90,31,0.8)",
+                    "0 0 30px rgba(255,90,31,0.6)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >{t('hero.title.dream')}</motion.span> {t('hero.title.it')},<br/>
+              {t('hero.title.we')} <motion.span 
+                className="text-purple drop-shadow-[0_0_30px_rgba(122,63,255,0.6)]"
+                animate={{ 
+                  textShadow: [
+                    "0 0 30px rgba(122,63,255,0.6)",
+                    "0 0 50px rgba(122,63,255,0.8)",
+                    "0 0 30px rgba(122,63,255,0.6)"
+                  ]
+                }}
+                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+              >{t('hero.title.do')}</motion.span> {t('hero.title.it')}.
+            </motion.h1>
+            <TextReveal className="font-space text-xl md:text-2xl text-gray mb-8 max-w-xl" delay={0.5}>
               {t('hero.subtitle')}
-            </p>
+            </TextReveal>
             <div className="flex flex-col sm:flex-row gap-4">
-              <motion.a 
-                href="#work" 
-                className="bg-orange text-white px-8 py-4 rounded-full font-space font-medium text-lg hover:bg-opacity-90 transition-all text-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {t('hero.cta.work')}
-              </motion.a>
-              <motion.a 
-                href="#services" 
-                className="border border-gray border-opacity-30 px-8 py-4 rounded-full font-space font-medium text-lg hover:bg-white hover:bg-opacity-5 transition-all text-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {t('hero.cta.services')}
-              </motion.a>
+              <MagneticButton magneticStrength={0.3}>
+                <a 
+                  href="#work" 
+                  data-testid="button-view-work"
+                  className="bg-gradient-to-r from-orange to-orange/80 text-white px-8 py-4 rounded-full font-space font-medium text-lg hover:shadow-[0_0_30px_rgba(255,90,31,0.5)] transition-all text-center block relative overflow-hidden group"
+                >
+                  <span className="relative z-10">{t('hero.cta.work')}</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-orange/0 via-white/20 to-orange/0 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                </a>
+              </MagneticButton>
+              <MagneticButton magneticStrength={0.3}>
+                <a 
+                  href="#services" 
+                  data-testid="button-services"
+                  className="border-2 border-white/20 backdrop-blur-sm px-8 py-4 rounded-full font-space font-medium text-lg hover:bg-white hover:bg-opacity-10 hover:border-purple transition-all text-center block"
+                >
+                  {t('hero.cta.services')}
+                </a>
+              </MagneticButton>
             </div>
           </motion.div>
           

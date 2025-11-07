@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
 import Parallax from "@/components/animations/parallax";
+import Counter from "@/components/animations/counter";
 import { LightbulbIcon, Rocket, HandshakeIcon, TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -140,6 +141,65 @@ const AboutSection = () => {
             </div>
           </Reveal>
         </div>
+
+        {/* Stats Section with Counter Animations */}
+        <Reveal>
+          <div className="mb-20">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              <motion.div 
+                className="text-center p-6 rounded-2xl bg-white bg-opacity-[0.03] border border-white border-opacity-10 backdrop-blur-sm"
+                whileHover={{ scale: 1.05, borderColor: "rgba(255,90,31,0.3)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="font-bebas text-5xl md:text-6xl text-orange mb-2">
+                  <Counter to={12} suffix="+" duration={2.5} />
+                </div>
+                <p className="font-space text-sm text-gray uppercase tracking-wide">
+                  {t('about.stats.years.label')}
+                </p>
+              </motion.div>
+
+              <motion.div 
+                className="text-center p-6 rounded-2xl bg-white bg-opacity-[0.03] border border-white border-opacity-10 backdrop-blur-sm"
+                whileHover={{ scale: 1.05, borderColor: "rgba(122,63,255,0.3)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="font-bebas text-5xl md:text-6xl text-purple mb-2">
+                  <Counter to={320} suffix="+" duration={3} />
+                </div>
+                <p className="font-space text-sm text-gray uppercase tracking-wide">
+                  {t('about.stats.projects.label')}
+                </p>
+              </motion.div>
+
+              <motion.div 
+                className="text-center p-6 rounded-2xl bg-white bg-opacity-[0.03] border border-white border-opacity-10 backdrop-blur-sm"
+                whileHover={{ scale: 1.05, borderColor: "rgba(255,90,31,0.3)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="font-bebas text-5xl md:text-6xl text-orange mb-2">
+                  <Counter to={150} suffix="+" duration={2.8} />
+                </div>
+                <p className="font-space text-sm text-gray uppercase tracking-wide">
+                  {t('about.stats.clients.label')}
+                </p>
+              </motion.div>
+
+              <motion.div 
+                className="text-center p-6 rounded-2xl bg-white bg-opacity-[0.03] border border-white border-opacity-10 backdrop-blur-sm"
+                whileHover={{ scale: 1.05, borderColor: "rgba(122,63,255,0.3)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="font-bebas text-5xl md:text-6xl text-purple mb-2">
+                  <Counter to={30} suffix="+" duration={2.3} />
+                </div>
+                <p className="font-space text-sm text-gray uppercase tracking-wide">
+                  {t('about.stats.team.label')}
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </Reveal>
         
         <Reveal>
           <div className="mb-20">
