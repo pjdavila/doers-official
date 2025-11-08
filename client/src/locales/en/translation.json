@@ -50,6 +50,13 @@
   "work": {
     "title": "OUR STELLAR WORK",
     "subtitle": "Transforming ambitious ideas into extraordinary digital experiences for leading brands",
+    "filters": {
+      "all": "All",
+      "apps": "Apps",
+      "dashboards": "Dashboards",
+      "websites": "Websites",
+      "social": "Social Media"
+    },
     "projects": {
       "ottApp": {
         "category": "OTT APPLICATION",
@@ -70,10 +77,31 @@
         "category": "INTERACTIVE EXPERIENCE",
         "title": "Jeep & RAM",
         "description": "Immersive digital showroom with 3D vehicle customization and lead generation integration."
+      },
+      "analytics": {
+        "category": "ANALYTICS DASHBOARD",
+        "title": "Analytics Pro",
+        "description": "Real-time business intelligence platform with advanced data visualizations and KPI tracking."
+      },
+      "crm": {
+        "category": "CRM DASHBOARD",
+        "title": "Sales CRM",
+        "description": "Customer relationship management system with sales pipeline tracking and automation tools."
+      },
+      "socialCampaign": {
+        "category": "SOCIAL MEDIA CAMPAIGN",
+        "title": "Social Campaign",
+        "description": "Multi-platform social media marketing campaign with branded content and engagement analytics."
+      },
+      "contentStrategy": {
+        "category": "CONTENT STRATEGY",
+        "title": "Content Strategy",
+        "description": "Comprehensive social media content strategy with visual storytelling and community management."
       }
     },
     "viewAll": "VIEW ALL PROJECTS",
-    "viewCase": "VIEW CASE STUDY"
+    "viewCase": "VIEW CASE STUDY",
+    "noProjects": "No projects found in this category"
   },
   "about": {
     "title": "ABOUT US",

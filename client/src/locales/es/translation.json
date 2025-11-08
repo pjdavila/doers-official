@@ -50,6 +50,13 @@
   "work": {
     "title": "NUESTRO TRABAJO ESTELAR",
     "subtitle": "Transformando ideas ambiciosas en experiencias digitales extraordinarias para marcas líderes",
+    "filters": {
+      "all": "Todos",
+      "apps": "Apps",
+      "dashboards": "Dashboards",
+      "websites": "Websites",
+      "social": "Redes Sociales"
+    },
     "projects": {
       "ottApp": {
         "category": "APLICACIÓN OTT",
@@ -70,10 +77,31 @@
         "category": "EXPERIENCIA INTERACTIVA",
         "title": "Jeep & RAM",
         "description": "Sala de exposición digital inmersiva con personalización de vehículos en 3D e integración de generación de leads."
+      },
+      "analytics": {
+        "category": "DASHBOARD DE ANÁLISIS",
+        "title": "Analytics Pro",
+        "description": "Plataforma de inteligencia empresarial en tiempo real con visualizaciones avanzadas de datos y seguimiento de KPIs."
+      },
+      "crm": {
+        "category": "DASHBOARD CRM",
+        "title": "Sales CRM",
+        "description": "Sistema de gestión de relaciones con clientes con seguimiento de pipeline de ventas y herramientas de automatización."
+      },
+      "socialCampaign": {
+        "category": "CAMPAÑA DE REDES SOCIALES",
+        "title": "Social Campaign",
+        "description": "Campaña de marketing en redes sociales multiplataforma con contenido de marca y análisis de engagement."
+      },
+      "contentStrategy": {
+        "category": "ESTRATEGIA DE CONTENIDO",
+        "title": "Content Strategy",
+        "description": "Estrategia integral de contenido para redes sociales con storytelling visual y gestión de comunidad."
       }
     },
     "viewAll": "VER TODOS LOS PROYECTOS",
-    "viewCase": "VER CASO DE ESTUDIO"
+    "viewCase": "VER CASO DE ESTUDIO",
+    "noProjects": "No se encontraron proyectos en esta categoría"
   },
   "about": {
     "title": "SOBRE NOSOTROS",
