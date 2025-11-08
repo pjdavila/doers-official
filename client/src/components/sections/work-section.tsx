@@ -125,7 +125,7 @@ const WorkSection = () => {
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
-        <Reveal>
+        <Reveal width="100%">
           <div className="text-center mb-16">
             <h2 className="font-bebas text-4xl md:text-6xl mb-4">{t('work.title')}</h2>
             <p className="font-space text-lg text-gray max-w-2xl mx-auto">{t('work.subtitle')}</p>
