@@ -3,10 +3,10 @@ import Reveal from "@/components/animations/reveal";
 import ProjectCard from "@/components/ui/project-card";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import project1Image from "@/assets/images/projects/project1.svg";
-import project2Image from "@/assets/images/projects/project2.svg";
-import project3Image from "@/assets/images/projects/project3.svg";
-import project4Image from "@/assets/images/projects/project4.svg";
+import project1Image from "@assets/generated_images/WAPA_TV_OTT_Streaming_8cf1a965.png";
+import project2Image from "@assets/generated_images/TeleOnce_Website_Redesign_2772bc46.png";
+import project3Image from "@assets/generated_images/PRTicket_E-commerce_Platform_9f37733b.png";
+import project4Image from "@assets/generated_images/Jeep_RAM_Interactive_Experience_3ad3eead.png";
 
 const projects = [
   {
