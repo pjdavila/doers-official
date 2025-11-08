@@ -132,7 +132,7 @@ const WorkSection = () => {
           </div>
         </Reveal>
         
-        <Reveal delay={0.2}>
+        <Reveal delay={0.2} width="100%">
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             {categories.map((cat) => (
               <motion.button
