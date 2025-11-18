@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Cpu, Smartphone, Globe, Zap, Code, Database } from "lucide-react";
+import { Smartphone, Globe, Zap, Code, Database } from "lucide-react";
 import { useMemo } from "react";
 
 interface OrbitingElementsProps {
@@ -29,7 +29,7 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
       radius: 450,
       duration: 80,
       elements: [
-        { icon: Cpu, color: "#7A3FFF", size: 56, delay: 0 },
+        { icon: Code, color: "#7A3FFF", size: 56, delay: 0 },
         { icon: Globe, color: "#FFFFFF", size: 42, delay: 40 },
       ]
     }
@@ -96,23 +96,25 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
               }}
             />
 
-            {/* AI Logo / Icon in center */}
+            {/* AI Logo / Animated SVG in center */}
             <motion.div
-              className="relative z-10 w-20 h-20 rounded-2xl flex items-center justify-center"
-              style={{
-                background: "linear-gradient(135deg, #FF5A1F 0%, #7A3FFF 100%)",
-                boxShadow: "0 10px 40px rgba(255, 90, 31, 0.5)"
-              }}
-              animate={{
-                rotate: [0, 360]
-              }}
+              className="relative z-10 w-40 h-40 flex items-center justify-center"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
               transition={{
-                duration: 20,
-                repeat: Infinity,
-                ease: "linear"
+                duration: 1,
+                delay: 0.8,
+                ease: "easeOut"
               }}
             >
-              <Cpu className="w-10 h-10 text-white" />
+              <img 
+                src="/animated-logo.svg" 
+                alt="AI Technology" 
+                className="w-full h-full object-contain"
+                style={{
+                  filter: "drop-shadow(0 10px 40px rgba(255, 90, 31, 0.3))"
+                }}
+              />
             </motion.div>
           </div>
         </motion.div>
