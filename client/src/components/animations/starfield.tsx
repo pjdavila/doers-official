@@ -21,7 +21,7 @@ interface StarfieldProps {
   starCount?: number;
 }
 
-const Starfield = ({ className = "", starCount = 150 }: StarfieldProps) => {
+const Starfield = ({ className = "", starCount = 50 }: StarfieldProps) => {
   const stars = useMemo<Star[]>(() => 
     Array.from({ length: starCount }, (_, i) => ({
       id: i,
@@ -34,7 +34,7 @@ const Starfield = ({ className = "", starCount = 150 }: StarfieldProps) => {
   , [starCount]);
 
   const shootingStars = useMemo<ShootingStar[]>(() => 
-    [1, 2, 3].map((i) => ({
+    [1].map((i) => ({
       id: i,
       top: Math.random() * 50,
       delay: i * 8

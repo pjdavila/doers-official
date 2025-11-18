@@ -18,7 +18,7 @@ interface ParticleSystemProps {
 }
 
 const ParticleSystem = ({ 
-  particleCount = 50, 
+  particleCount = 30, 
   colors = ['#FF5A1F', '#7A3FFF', '#FFFFFF'],
   className = ''
 }: ParticleSystemProps) => {
@@ -82,12 +82,12 @@ const ParticleSystem = ({
           const dy = particle.y - otherParticle.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 100) {
+          if (distance < 80) {
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(otherParticle.x, otherParticle.y);
             ctx.strokeStyle = particle.color;
-            ctx.globalAlpha = (1 - distance / 100) * 0.15;
+            ctx.globalAlpha = (1 - distance / 80) * 0.1;
             ctx.lineWidth = 0.5;
             ctx.stroke();
             ctx.globalAlpha = 1;
