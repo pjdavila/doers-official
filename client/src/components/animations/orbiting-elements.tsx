@@ -47,9 +47,9 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
 
   return (
     <div className={`absolute inset-0 flex items-center justify-center ${className}`}>
-      {/* Center glow effect */}
+      {/* Center glow effect - Using will-change for GPU acceleration */}
       <motion.div
-        className="absolute w-96 h-96 rounded-full"
+        className="absolute w-96 h-96 rounded-full will-change-transform"
         style={{
           background: "radial-gradient(circle, rgba(255, 90, 31, 0.2) 0%, transparent 70%)",
           filter: "blur(60px)"
@@ -65,9 +65,9 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
         }}
       />
 
-      {/* AI Logo / Animated SVG - Large and centered */}
+      {/* AI Logo / Animated SVG - Large and centered with GPU acceleration */}
       <motion.div
-        className="relative z-10 w-[600px] h-[600px] flex items-center justify-center"
+        className="relative z-10 w-[600px] h-[600px] flex items-center justify-center will-change-transform"
         initial={{ scale: 0, opacity: 0 }}
         animate={{ 
           scale: [1, 1.05, 1],

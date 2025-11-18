@@ -14,10 +14,10 @@ const HeroSection = () => {
       {/* Starfield Background */}
       <Starfield className="z-0" />
       
-      {/* Gradient overlays for depth */}
+      {/* Gradient overlays for depth - GPU accelerated */}
       <div className="absolute inset-0 z-0">
         <motion.div 
-          className="absolute top-0 right-0 w-1/2 h-full bg-purple opacity-5 blur-[150px]"
+          className="absolute top-0 right-0 w-1/2 h-full bg-purple opacity-5 blur-[150px] will-change-transform"
           animate={{ 
             x: [0, 30, 0],
             opacity: [0.05, 0.08, 0.05] 
@@ -29,7 +29,7 @@ const HeroSection = () => {
           }}
         />
         <motion.div 
-          className="absolute bottom-0 left-0 w-1/2 h-full bg-orange opacity-5 blur-[150px]"
+          className="absolute bottom-0 left-0 w-1/2 h-full bg-orange opacity-5 blur-[150px] will-change-transform"
           animate={{ 
             x: [0, -30, 0],
             opacity: [0.05, 0.08, 0.05] 
