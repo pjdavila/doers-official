@@ -47,196 +47,45 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
 
   return (
     <div className={`absolute inset-0 flex items-center justify-center ${className}`}>
-      {/* Central Platform - Isometric style */}
-      <div className="relative z-20">
-        <motion.div
-          className="relative"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          {/* Main platform */}
-          <div className="relative w-64 h-64 flex items-center justify-center">
-            {/* Isometric platform layers */}
-            <motion.div 
-              className="absolute w-48 h-48 rounded-3xl"
-              style={{
-                background: "linear-gradient(135deg, rgba(122, 63, 255, 0.3) 0%, rgba(255, 90, 31, 0.3) 100%)",
-                backdropFilter: "blur(20px)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                boxShadow: "0 20px 60px rgba(122, 63, 255, 0.3), inset 0 0 40px rgba(255, 90, 31, 0.2)",
-                transform: "perspective(1000px) rotateX(45deg) rotateZ(45deg)"
-              }}
-              animate={{
-                rotateZ: [45, 50, 45],
-                y: [0, -10, 0]
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
-            
-            {/* Center glow */}
-            <motion.div
-              className="absolute w-32 h-32 rounded-full"
-              style={{
-                background: "radial-gradient(circle, rgba(255, 90, 31, 0.4) 0%, transparent 70%)",
-                filter: "blur(20px)"
-              }}
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.4, 0.6, 0.4]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            />
+      {/* Center glow effect */}
+      <motion.div
+        className="absolute w-96 h-96 rounded-full"
+        style={{
+          background: "radial-gradient(circle, rgba(255, 90, 31, 0.2) 0%, transparent 70%)",
+          filter: "blur(60px)"
+        }}
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
 
-            {/* AI Logo / Animated SVG in center */}
-            <motion.div
-              className="relative z-10 w-48 h-48 flex items-center justify-center"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{
-                duration: 1,
-                delay: 0.8,
-                ease: "easeOut"
-              }}
-            >
-              <iframe 
-                src="/animated-ai-logo.html" 
-                className="w-full h-full border-0"
-                title="AI Technology Animation"
-                style={{
-                  filter: "drop-shadow(0 10px 40px rgba(255, 90, 31, 0.3))",
-                  pointerEvents: "none"
-                }}
-              />
-            </motion.div>
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Orbits */}
-      {orbits.map((orbit, orbitIndex) => (
-        <div key={orbitIndex} className="absolute inset-0 flex items-center justify-center">
-          {/* Orbit ring */}
-          <motion.div
-            className="absolute rounded-full border border-white/10"
-            style={{
-              width: orbit.radius * 2,
-              height: orbit.radius * 2,
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ 
-              opacity: [0.2, 0.4, 0.2],
-              scale: 1,
-              rotate: 360
-            }}
-            transition={{
-              opacity: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              scale: { duration: 1, delay: orbitIndex * 0.2 },
-              rotate: { duration: orbit.duration, repeat: Infinity, ease: "linear" }
-            }}
-          />
-
-          {/* Elements on orbit */}
-          {orbit.elements.map((element, elementIndex) => {
-            const Icon = element.icon;
-            const angle = (360 / orbit.elements.length) * elementIndex;
-            
-            return (
-              <motion.div
-                key={`${orbitIndex}-${elementIndex}`}
-                className="absolute"
-                style={{
-                  width: orbit.radius * 2,
-                  height: orbit.radius * 2,
-                }}
-                initial={{ rotate: angle }}
-                animate={{ rotate: angle + 360 }}
-                transition={{
-                  duration: orbit.duration,
-                  repeat: Infinity,
-                  ease: "linear",
-                  delay: element.delay
-                }}
-              >
-                <motion.div
-                  className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"
-                  animate={{
-                    scale: [1, 1.1, 1],
-                    y: [0, -5, 0]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: elementIndex * 0.3
-                  }}
-                >
-                  <motion.div
-                    className="rounded-2xl backdrop-blur-md flex items-center justify-center"
-                    style={{
-                      width: element.size,
-                      height: element.size,
-                      background: `${element.color}20`,
-                      border: `2px solid ${element.color}40`,
-                      boxShadow: `0 0 20px ${element.color}40`
-                    }}
-                    whileHover={{ scale: 1.2 }}
-                    animate={{
-                      rotate: -(angle + 360)
-                    }}
-                    transition={{
-                      rotate: {
-                        duration: orbit.duration,
-                        repeat: Infinity,
-                        ease: "linear",
-                        delay: element.delay
-                      }
-                    }}
-                  >
-                    <Icon 
-                      size={element.size * 0.5} 
-                      style={{ color: element.color }}
-                      strokeWidth={2.5}
-                    />
-                  </motion.div>
-                </motion.div>
-              </motion.div>
-            );
-          })}
-        </div>
-      ))}
-
-      {/* Orbital dots/particles */}
-      {orbitDots.map((dot) => (
-        <div
-          key={`dot-${dot.id}`}
-          className="absolute"
+      {/* AI Logo / Animated SVG - Large and centered */}
+      <motion.div
+        className="relative z-10 w-[600px] h-[600px] flex items-center justify-center"
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          duration: 1.2,
+          delay: 0.3,
+          ease: "easeOut"
+        }}
+      >
+        <iframe 
+          src="/animated-ai-logo.html" 
+          className="w-full h-full border-0"
+          title="AI Technology Animation"
           style={{
-            width: dot.radius * 2,
-            height: dot.radius * 2,
+            filter: "drop-shadow(0 20px 60px rgba(255, 90, 31, 0.4))",
+            pointerEvents: "none"
           }}
-        >
-          <motion.div
-            className="absolute top-0 left-1/2 w-2 h-2 rounded-full bg-white/40"
-            initial={{ rotate: dot.initialRotation }}
-            animate={{ rotate: dot.initialRotation + 360 }}
-            transition={{
-              duration: dot.duration,
-              repeat: Infinity,
-              ease: "linear",
-              delay: dot.delay
-            }}
-          />
-        </div>
-      ))}
+        />
+      </motion.div>
     </div>
   );
 };
