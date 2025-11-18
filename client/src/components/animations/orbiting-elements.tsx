@@ -68,12 +68,35 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
       {/* AI Logo / Animated SVG - Large and centered */}
       <motion.div
         className="relative z-10 w-[600px] h-[600px] flex items-center justify-center"
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={{ scale: 0, opacity: 0, rotate: -10 }}
+        animate={{ 
+          scale: [1, 1.05, 1],
+          opacity: 1,
+          rotate: [0, 360],
+          y: [0, -20, 0]
+        }}
         transition={{
-          duration: 1.2,
-          delay: 0.3,
-          ease: "easeOut"
+          scale: {
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut"
+          },
+          opacity: {
+            duration: 1.2,
+            delay: 0.3,
+            ease: "easeOut"
+          },
+          rotate: {
+            duration: 60,
+            repeat: Infinity,
+            ease: "linear"
+          },
+          y: {
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5
+          }
         }}
       >
         <iframe 
