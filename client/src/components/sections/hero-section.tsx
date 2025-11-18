@@ -12,7 +12,7 @@ const HeroSection = () => {
   return (
     <section className="min-h-screen relative overflow-hidden flex items-center" id="hero">
       {/* Starfield Background */}
-      <Starfield className="z-0" starCount={200} />
+      <Starfield className="z-0" />
       
       {/* Gradient overlays for depth */}
       <div className="absolute inset-0 z-0">

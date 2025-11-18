@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { isMobile } from '@/lib/device-detection';
 
 interface Particle {
   x: number;
@@ -25,6 +26,8 @@ const ParticleSystem = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particles = useRef<Particle[]>([]);
   const animationFrameId = useRef<number>();
+  const mobile = isMobile();
+  const effectiveParticleCount = mobile ? Math.floor(particleCount / 2) : particleCount;
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -42,7 +45,7 @@ const ParticleSystem = ({
     window.addEventListener('resize', resize);
 
     // Initialize particles
-    particles.current = Array.from({ length: particleCount }, () => ({
+    particles.current = Array.from({ length: effectiveParticleCount }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       size: Math.random() * 2 + 0.5,
@@ -106,7 +109,7 @@ const ParticleSystem = ({
         cancelAnimationFrame(animationFrameId.current);
       }
     };
-  }, [particleCount, colors]);
+  }, [effectiveParticleCount, colors]);
 
   return (
     <canvas

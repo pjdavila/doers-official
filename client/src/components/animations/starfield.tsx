@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useMemo } from "react";
+import { isMobile, useReducedMotion } from "@/lib/device-detection";
 
 interface Star {
   id: number;
@@ -22,8 +23,12 @@ interface StarfieldProps {
 }
 
 const Starfield = ({ className = "", starCount = 50 }: StarfieldProps) => {
+  const mobile = isMobile();
+  const reducedMotion = useReducedMotion();
+  const effectiveStarCount = mobile ? Math.floor(starCount / 2) : starCount;
+  
   const stars = useMemo<Star[]>(() => 
-    Array.from({ length: starCount }, (_, i) => ({
+    Array.from({ length: effectiveStarCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -31,7 +36,7 @@ const Starfield = ({ className = "", starCount = 50 }: StarfieldProps) => {
       duration: Math.random() * 3 + 2,
       delay: Math.random() * 5
     }))
-  , [starCount]);
+  , [effectiveStarCount]);
 
   const shootingStars = useMemo<ShootingStar[]>(() => 
     [1].map((i) => ({
@@ -62,11 +67,11 @@ const Starfield = ({ className = "", starCount = 50 }: StarfieldProps) => {
             width: star.size,
             height: star.size,
           }}
-          animate={{
+          animate={reducedMotion ? { opacity: 0.5 } : {
             opacity: [0.2, 1, 0.2],
             scale: [1, 1.5, 1]
           }}
-          transition={{
+          transition={reducedMotion ? {} : {
             duration: star.duration,
             repeat: Infinity,
             ease: "easeInOut",
