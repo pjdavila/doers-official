@@ -98,7 +98,7 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
 
             {/* AI Logo / Animated SVG in center */}
             <motion.div
-              className="relative z-10 w-40 h-40 flex items-center justify-center"
+              className="relative z-10 w-48 h-48 flex items-center justify-center"
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{
@@ -107,12 +107,13 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
                 ease: "easeOut"
               }}
             >
-              <img 
-                src="/animated-logo.svg" 
-                alt="AI Technology" 
-                className="w-full h-full object-contain"
+              <iframe 
+                src="/animated-ai-logo.html" 
+                className="w-full h-full border-0"
+                title="AI Technology Animation"
                 style={{
-                  filter: "drop-shadow(0 10px 40px rgba(255, 90, 31, 0.3))"
+                  filter: "drop-shadow(0 10px 40px rgba(255, 90, 31, 0.3))",
+                  pointerEvents: "none"
                 }}
               />
             </motion.div>
