@@ -4,9 +4,11 @@ import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import { useMounted } from "@/hooks/use-mounted";
 
 const PrivacyPolicy = () => {
   const { t } = useTranslation();
+  const mounted = useMounted();
 
   return (
     <div className="min-h-screen bg-black text-white pt-24 pb-16">
@@ -30,7 +32,7 @@ const PrivacyPolicy = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-purple">{t('privacy.title')}</span>
+          <span className="text-purple">{mounted ? t('privacy.title') : 'Privacy Policy'}</span>
         </motion.h1>
         
         <motion.div 
@@ -58,9 +60,9 @@ const PrivacyPolicy = () => {
                 transition={{ duration: 0.6, delay }}
                 className="border-l-2 border-purple/30 pl-6 py-4"
               >
-                <h2 className="font-bebas text-3xl text-orange mb-4">{t(`privacy.${key}.title`)}</h2>
+                <h2 className="font-bebas text-3xl text-orange mb-4">{mounted ? t(`privacy.${key}.title`) : 'Section'}</h2>
                 <p className="font-space text-lg text-gray leading-relaxed">
-                  {t(`privacy.${key}.content`)}
+                  {mounted ? t(`privacy.${key}.content`) : 'Content'}
                 </p>
                 {key === 'section2' && (
                   <motion.ul 
@@ -72,19 +74,19 @@ const PrivacyPolicy = () => {
                   >
                     <li className="flex items-start gap-3">
                       <span className="text-orange mt-1">•</span>
-                      {t('privacy.section2.item1')}
+                      {mounted ? t('privacy.section2.item1') : 'Information we collect'}
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-orange mt-1">•</span>
-                      {t('privacy.section2.item2')}
+                      {mounted ? t('privacy.section2.item2') : 'How we use your information'}
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-orange mt-1">•</span>
-                      {t('privacy.section2.item3')}
+                      {mounted ? t('privacy.section2.item3') : 'Data sharing'}
                     </li>
                     <li className="flex items-start gap-3">
                       <span className="text-orange mt-1">•</span>
-                      {t('privacy.section2.item4')}
+                      {mounted ? t('privacy.section2.item4') : 'Your rights'}
                     </li>
                   </motion.ul>
                 )}
@@ -98,9 +100,9 @@ const PrivacyPolicy = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              <h2 className="font-bebas text-3xl text-purple mb-4">{t('privacy.contact.title')}</h2>
+              <h2 className="font-bebas text-3xl text-purple mb-4">{mounted ? t('privacy.contact.title') : 'Contact Us'}</h2>
               <p className="font-space text-lg text-gray leading-relaxed mb-4">
-                {t('privacy.contact.content')}
+                {mounted ? t('privacy.contact.content') : 'If you have any questions about this privacy policy, please contact us.'}
               </p>
               <div className="bg-black/30 p-4 rounded-lg">
                 <p className="font-space text-orange">Email: info@doers.dev</p>
@@ -115,7 +117,7 @@ const PrivacyPolicy = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <p className="font-space text-sm text-gray">
-                {t('privacy.lastUpdated')}
+                {mounted ? t('privacy.lastUpdated') : 'Last updated: November 2025'}
               </p>
             </motion.div>
           </div>

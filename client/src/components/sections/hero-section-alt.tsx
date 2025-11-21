@@ -1,11 +1,15 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import SplineUpload from '../animations/spline-upload';
+import { useMounted } from '@/hooks/use-mounted';
 
 const HeroSectionAlt: React.FC = () => {
   const { t } = useTranslation();
+  const mounted = useMounted();
   const [splineLoading, setSplineLoading] = useState(true);
   
   useEffect(() => {
@@ -41,7 +45,7 @@ const HeroSectionAlt: React.FC = () => {
               transition={{ duration: 8, repeat: Infinity }}
               style={{ WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
-              {t('hero.title')}
+              {mounted ? t('hero.title') : 'You Dream It, We Do It'}
             </motion.h1>
             
             <motion.p 
@@ -50,7 +54,7 @@ const HeroSectionAlt: React.FC = () => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {t('hero.subtitle')}
+              {mounted ? t('hero.subtitle') : 'Building digital experiences that drive growth'}
             </motion.p>
             
             <motion.div
@@ -60,10 +64,10 @@ const HeroSectionAlt: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               <a href="#contact" className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 bg-gradient-to-r from-purple to-orange rounded-full hover:brightness-110 focus:shadow-outline focus:outline-none">
-                {t('hero.cta')}
+                {mounted ? t('hero.cta') : 'Start Your Project'}
               </a>
               <a href="#services" className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded-full border-2 border-white/20 hover:bg-white/10 focus:shadow-outline focus:outline-none">
-                {t('hero.services')}
+                {mounted ? t('hero.services') : 'Our Services'}
               </a>
             </motion.div>
           </motion.div>
@@ -89,7 +93,7 @@ const HeroSectionAlt: React.FC = () => {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="text-xs text-gray mb-2 font-space uppercase">{t('hero.scroll')}</span>
+          <span className="text-xs text-gray mb-2 font-space uppercase">{mounted ? t('hero.scroll') : 'Scroll Down'}</span>
           <a href="#services" className="text-white opacity-60 hover:opacity-100 transition-opacity">
             <ChevronDown size={24} />
           </a>

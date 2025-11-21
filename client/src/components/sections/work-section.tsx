@@ -1,9 +1,12 @@
+'use client'
+
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Reveal from "@/components/animations/reveal";
 import ProjectCard from "@/components/ui/project-card";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useMounted } from "@/hooks/use-mounted";
 import project1Image from "@assets/generated_images/WAPA_TV_OTT_Streaming_8cf1a965.png";
 import project2Image from "@assets/generated_images/TeleOnce_Website_Redesign_2772bc46.png";
 import project3Image from "@assets/generated_images/PRTicket_E-commerce_Platform_9f37733b.png";
@@ -101,6 +104,7 @@ const categories = [
 
 const WorkSection = () => {
   const { t } = useTranslation();
+  const mounted = useMounted();
   const [activeFilter, setActiveFilter] = useState<string>("all");
 
   const filteredProjects = activeFilter === "all" 
@@ -127,8 +131,8 @@ const WorkSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <Reveal width="100%">
           <div className="text-center mb-16">
-            <h2 className="font-bebas text-4xl md:text-6xl mb-4">{t('work.title')}</h2>
-            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{t('work.subtitle')}</p>
+            <h2 className="font-bebas text-4xl md:text-6xl mb-4">{mounted ? t('work.title') : 'Our Work'}</h2>
+            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{mounted ? t('work.subtitle') : 'Explore our portfolio of digital solutions'}</p>
           </div>
         </Reveal>
         
@@ -150,7 +154,7 @@ const WorkSection = () => {
                 whileTap={{ scale: 0.95 }}
                 data-testid={`filter-${cat.id}`}
               >
-                {t(cat.label)}
+                {mounted ? t(cat.label) : cat.id.charAt(0).toUpperCase() + cat.id.slice(1)}
               </motion.button>
             ))}
           </div>
@@ -187,7 +191,7 @@ const WorkSection = () => {
             transition={{ duration: 0.5 }}
           >
             <p className="font-space text-lg text-gray">
-              {t('work.noProjects')}
+              {mounted ? t('work.noProjects') : 'No projects found in this category'}
             </p>
           </motion.div>
         )}
@@ -201,7 +205,7 @@ const WorkSection = () => {
               whileTap={{ scale: 0.95 }}
               data-testid="button-view-all-projects"
             >
-              <span>{t('work.viewAll')}</span>
+              <span>{mounted ? t('work.viewAll') : 'View All Projects'}</span>
               <ArrowRight size={20} />
             </motion.a>
           </div>

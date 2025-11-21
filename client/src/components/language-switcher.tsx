@@ -1,15 +1,22 @@
+'use client'
+
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Check, Globe } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useMounted } from '@/hooks/use-mounted';
 
 const LanguageSwitcher = () => {
   const { i18n, t } = useTranslation();
+  const mounted = useMounted();
   const [isOpen, setIsOpen] = useState(false);
 
-  const languages = [
+  const languages = mounted ? [
     { code: 'en', name: t('language.en') },
     { code: 'es', name: t('language.es') }
+  ] : [
+    { code: 'en', name: 'English' },
+    { code: 'es', name: 'Español' }
   ];
 
   const toggleDropdown = () => {

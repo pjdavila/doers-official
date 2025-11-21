@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -5,9 +7,11 @@ import MagneticButton from "@/components/animations/magnetic-button";
 import TextReveal from "@/components/animations/text-reveal";
 import OrbitingElements from "@/components/animations/orbiting-elements";
 import Starfield from "@/components/animations/starfield";
+import { useMounted } from "@/hooks/use-mounted";
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const mounted = useMounted();
   
   return (
     <section className="min-h-screen relative overflow-hidden flex items-center" id="hero">

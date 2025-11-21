@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
@@ -14,6 +16,7 @@ import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
+import { useMounted } from "@/hooks/use-mounted";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -28,6 +31,7 @@ type FormValues = z.infer<typeof formSchema>;
 const ContactSection = () => {
   const { toast } = useToast();
   const { t } = useTranslation();
+  const mounted = useMounted();
   
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -86,10 +90,10 @@ const ContactSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-12">
           <Reveal>
-            <h2 className="text-4xl md:text-5xl font-bold font-space mb-4">{t('contact.title')}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-space mb-4">{mounted ? t('contact.title') : 'Get in Touch'}</h2>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-gray text-lg max-w-2xl mx-auto">{t('contact.subtitle')}</p>
+            <p className="text-gray text-lg max-w-2xl mx-auto">{mounted ? t('contact.subtitle') : "Let's create something amazing together"}</p>
           </Reveal>
         </div>
         

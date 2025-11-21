@@ -1,8 +1,11 @@
+'use client'
+
 import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
 import ServiceCard from "@/components/ui/service-card";
 import { Smartphone, Laptop, Tv, Bot, Palette, LineChart, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useMounted } from "@/hooks/use-mounted";
 
 const services = [
   {
@@ -51,6 +54,7 @@ const services = [
 
 const ServicesSection = () => {
   const { t } = useTranslation();
+  const mounted = useMounted();
   return (
     <section id="services" className="py-20 relative overflow-hidden" style={{ perspective: "1500px" }}>
       <div className="absolute top-0 left-0 w-full h-full bg-black">
@@ -132,9 +136,9 @@ const ServicesSection = () => {
                 backgroundClip: "text",
               }}
             >
-              {t('services.title')}
+              {mounted ? t('services.title') : 'Our Services'}
             </motion.h2>
-            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{t('services.subtitle')}</p>
+            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{mounted ? t('services.subtitle') : 'Comprehensive digital solutions to power your business'}</p>
           </div>
         </Reveal>
         

@@ -1,5 +1,8 @@
+'use client'
+
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { useMounted } from '@/hooks/use-mounted';
 
 interface ProjectCardProps {
   image: string;
@@ -19,6 +22,7 @@ const ProjectCard = ({
   delay = 0
 }: ProjectCardProps) => {
   const { t } = useTranslation();
+  const mounted = useMounted();
   return (
     <motion.div 
       className="rounded-2xl overflow-hidden relative group"
@@ -38,9 +42,9 @@ const ProjectCard = ({
       </div>
       <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
       <div className="absolute bottom-0 left-0 p-6 w-full">
-        <span className={`${categoryColor} font-space text-sm tracking-wider mb-2 block`}>{t(category)}</span>
+        <span className={`${categoryColor} font-space text-sm tracking-wider mb-2 block`}>{mounted ? t(category) : 'Project'}</span>
         <h3 className="font-space text-2xl mb-2">{title}</h3>
-        <p className="text-gray text-sm mb-4 max-w-md">{t(description)}</p>
+        <p className="text-gray text-sm mb-4 max-w-md">{mounted ? t(description) : 'Project description'}</p>
         <motion.a 
           href="#" 
           className="inline-flex items-center gap-2 text-white font-space text-sm"
@@ -49,7 +53,7 @@ const ProjectCard = ({
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          <span>{t('work.viewCase')}</span>
+          <span>{mounted ? t('work.viewCase') : 'View Case Study'}</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>

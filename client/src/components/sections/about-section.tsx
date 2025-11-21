@@ -1,12 +1,16 @@
+'use client'
+
 import { motion } from "framer-motion";
 import Reveal from "@/components/animations/reveal";
 import Parallax from "@/components/animations/parallax";
 import Counter from "@/components/animations/counter";
 import { LightbulbIcon, Rocket, HandshakeIcon, TrendingUp } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useMounted } from "@/hooks/use-mounted";
 
 const AboutSection = () => {
   const { t } = useTranslation();
+  const mounted = useMounted();
   
   const clients = [
     "WAPA TV",
@@ -51,8 +55,8 @@ const AboutSection = () => {
       <div className="container mx-auto px-6 relative z-10">
         <Reveal>
           <div className="text-center mb-16">
-            <h2 className="font-bebas text-4xl md:text-6xl mb-4">{t('about.title')} <span className="text-orange">DOERS</span></h2>
-            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{t('about.subtitle')}</p>
+            <h2 className="font-bebas text-4xl md:text-6xl mb-4">{mounted ? t('about.title') : 'About'} <span className="text-orange">DOERS</span></h2>
+            <p className="font-space text-lg text-gray max-w-2xl mx-auto">{mounted ? t('about.subtitle') : 'We turn ambitious ideas into extraordinary digital products'}</p>
           </div>
         </Reveal>
         
@@ -155,7 +159,7 @@ const AboutSection = () => {
                   <Counter to={12} suffix="+" duration={2.5} />
                 </div>
                 <p className="font-space text-sm text-gray uppercase tracking-wide">
-                  {t('about.stats.years.label')}
+                  {mounted ? t('about.stats.years.label') : 'Years Experience'}
                 </p>
               </motion.div>
 
@@ -168,7 +172,7 @@ const AboutSection = () => {
                   <Counter to={320} suffix="+" duration={3} />
                 </div>
                 <p className="font-space text-sm text-gray uppercase tracking-wide">
-                  {t('about.stats.projects.label')}
+                  {mounted ? t('about.stats.projects.label') : 'Projects Completed'}
                 </p>
               </motion.div>
 
@@ -181,7 +185,7 @@ const AboutSection = () => {
                   <Counter to={150} suffix="+" duration={2.8} />
                 </div>
                 <p className="font-space text-sm text-gray uppercase tracking-wide">
-                  {t('about.stats.clients.label')}
+                  {mounted ? t('about.stats.clients.label') : 'Happy Clients'}
                 </p>
               </motion.div>
 
@@ -194,7 +198,7 @@ const AboutSection = () => {
                   <Counter to={30} suffix="+" duration={2.3} />
                 </div>
                 <p className="font-space text-sm text-gray uppercase tracking-wide">
-                  {t('about.stats.team.label')}
+                  {mounted ? t('about.stats.team.label') : 'Team Members'}
                 </p>
               </motion.div>
             </div>

@@ -7,9 +7,11 @@ import { Menu, X, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import doersLogo from "../../assets/images/DOERS-Horizontal.png";
 import LanguageSwitcher from "../language-switcher";
+import { useMounted } from "@/hooks/use-mounted";
 
 const Header = () => {
   const { t } = useTranslation();
+  const mounted = useMounted();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -32,12 +34,18 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const navLinks = [
+  const navLinks = mounted ? [
     { name: t('header.navigation.home'), href: "#" },
     { name: t('header.navigation.services'), href: "#services" },
     { name: t('header.navigation.work'), href: "#work" },
     { name: t('header.navigation.about'), href: "#about" },
     { name: t('header.navigation.contact'), href: "#contact" },
+  ] : [
+    { name: 'Home', href: "#" },
+    { name: 'Services', href: "#services" },
+    { name: 'Work', href: "#work" },
+    { name: 'About', href: "#about" },
+    { name: 'Contact', href: "#contact" },
   ];
 
   const headerClasses = `fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -50,7 +58,7 @@ const Header = () => {
         <div className="flex justify-between items-center gap-8">
           <Link href="#" className="flex items-center gap-2 flex-shrink-0">
             <img src={doersLogo} alt="DOERS Logo" className="h-14" />
-            <span className="hidden sm:block text-orange text-xs font-space">{t('header.since')}</span>
+            {mounted && <span className="hidden sm:block text-orange text-xs font-space">{t('header.since')}</span>}
           </Link>
           
           <nav className="hidden lg:flex items-center flex-1 justify-center">
@@ -77,7 +85,7 @@ const Header = () => {
               data-testid="button-get-started"
               className="bg-black text-white px-6 py-3 rounded-full font-space font-medium text-sm hover:bg-opacity-80 transition-all flex items-center gap-2 border border-white border-opacity-20"
             >
-              <span>{t('header.cta')}</span>
+              <span>{mounted ? t('header.cta') : 'Get Started'}</span>
               <ArrowRight size={16} />
             </a>
           </div>
@@ -124,7 +132,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.1 }}
               >
-                {t('header.cta')}
+                {mounted ? t('header.cta') : 'Get Started'}
               </motion.a>
               
               <motion.div
