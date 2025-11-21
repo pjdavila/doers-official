@@ -1,0 +1,61 @@
+## Error Type
+Recoverable Error
+
+## Error Message
+Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+      <SegmentViewNode type="page" pagePath="page.tsx">
+        <SegmentTrieNode>
+        <ClientPageRoot Component={function Page} serverProvidedParams={{...}}>
+          <Page params={Promise} searchParams={Promise}>
+            <Home>
+              <Header>
+                <header className={"fixed to..."}>
+                  <div className="container ...">
+                    <div className="flex justi...">
+                      <LinkComponent>
+                      <nav>
+                      <div className="hidden lg:...">
+                        <LanguageSwitcher>
+                          <div className="relative">
+                            <button className="flex items..." onClick={function toggleDropdown} ...>
+                              <Globe>
+                              <span className="font-space text-sm hidden md:inline">
++                               ES-US
+-                               EN
+                            ...
+                        ...
+                      ...
+                  ...
+              ...
+      ...
+
+
+
+    at span (unknown:0:0)
+    at LanguageSwitcher (client/src/components/language-switcher.tsx:39:9)
+    at Header (client/src/components/layout/header.tsx:81:13)
+    at Home (client/src/pages/home.tsx:21:7)
+
+## Code Frame
+  37 |       >
+  38 |         <Globe size={16} />
+> 39 |         <span className="font-space text-sm hidden md:inline">{i18n.language.toUpperCase()}</span>
+     |         ^
+  40 |       </button>
+  41 |
+  42 |       <AnimatePresence>
+
+Next.js version: 16.0.3 (Turbopack)

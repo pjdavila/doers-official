@@ -36,7 +36,7 @@ const LanguageSwitcher = () => {
         aria-label="Language selector"
       >
         <Globe size={16} />
-        <span className="font-space text-sm hidden md:inline">{i18n.language.toUpperCase()}</span>
+        <span className="font-space text-sm hidden md:inline">{mounted ? i18n.language.toUpperCase() : 'EN'}</span>
       </button>
 
       <AnimatePresence>
@@ -55,7 +55,7 @@ const LanguageSwitcher = () => {
                 onClick={() => changeLanguage(language.code)}
               >
                 <span>{language.name}</span>
-                {i18n.language === language.code && <Check size={14} className="text-orange" />}
+                {mounted && i18n.language === language.code && <Check size={14} className="text-orange" />}
               </button>
             ))}
           </motion.div>
