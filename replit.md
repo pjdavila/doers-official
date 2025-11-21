@@ -77,30 +77,32 @@ The project has been successfully migrated to Next.js 16 for improved SEO, SSR c
 
 **Running the Project**:
 
-**Option 1: Next.js (Recommended for Production)**
+**Current Status (November 21, 2025)**:
+The project currently has a **dual-stack setup** with both Vite and Next.js configured. The Replit workflow still runs the Vite version by default.
+
+**Option 1: Next.js (Recommended for Production - Manual Setup Required)**
+To run Next.js, you need to **manually execute** these commands in the shell:
 ```bash
 # Development
-npm run dev  # Starts Next.js dev server on port 3000
+next dev  # Starts Next.js dev server on port 3000
 
 # Production
-npm run build  # Builds Next.js app
-npm run start  # Starts Next.js production server
+next build  # Builds Next.js app
+next start  # Starts Next.js production server
 ```
 
-**Option 2: Vite (Legacy)**
+**Option 2: Vite (Currently Active in Workflow)**
+The workflow "Start application" currently runs:
 ```bash
-# Development
-npm run vite-dev  # Starts Vite + Express on port 5000
-
-# Production
-npm run vite-build  # Builds Vite app
-npm run vite-start  # Starts production server
+tsx server/index.ts  # Starts Vite + Express on port 5000
 ```
 
-**⚠️ Manual Step Required**:
-To switch the Replit workflow to Next.js, update `.replit` file (line ~41):
-- Change: `args = "npm run dev"` (currently runs Vite)
-- To ensure it runs Next.js when workflow restarts
+**⚠️ Manual Steps Required to Switch to Next.js**:
+1. Update `.replit` file (line ~41) to change the workflow command:
+   - Current: `args = "npm run dev"` (runs `tsx server/index.ts`)
+   - Change to: `args = "next dev"` (to run Next.js)
+   
+2. **Note**: Package.json cannot be edited programmatically, so npm scripts for Next.js don't exist. You must run Next.js commands directly (`next dev`, `next build`, `next start`) rather than through npm scripts.
 
 **What's Improved**:
 - Better SEO with server-side rendering

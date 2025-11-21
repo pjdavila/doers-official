@@ -10,6 +10,14 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
   const [isVisible, setIsVisible] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 });
+
+  useEffect(() => {
+    // Get window dimensions on client-side only
+    if (typeof window !== 'undefined') {
+      setDimensions({ width: window.innerWidth, height: window.innerHeight });
+    }
+  }, []);
 
   useEffect(() => {
     // Simulate loading progress
@@ -95,8 +103,8 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
                   key={i}
                   className="absolute w-1 h-1 bg-orange rounded-full"
                   initial={{
-                    x: Math.random() * window.innerWidth,
-                    y: window.innerHeight,
+                    x: Math.random() * dimensions.width,
+                    y: dimensions.height,
                     opacity: 0,
                   }}
                   animate={{
