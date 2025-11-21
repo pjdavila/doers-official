@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 import BlogPostContent from '@/components/blog/blog-post-content';
 import { getWordPressPostBySlug, stripHtmlTags } from '@/lib/wordpress';
 
@@ -47,20 +49,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <div className="min-h-screen bg-black">
-      <div className="container mx-auto px-6 py-32">
-        {/* Back Button */}
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-gray hover:text-orange transition-colors mb-12 font-space"
-        >
-          <ArrowLeft size={20} />
-          <span>Back to Blog</span>
-        </Link>
+    <>
+      <Header />
+      <div className="min-h-screen bg-black">
+        <div className="container mx-auto px-6 py-32">
+          {/* Back Button */}
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-gray hover:text-orange transition-colors mb-12 font-space"
+          >
+            <ArrowLeft size={20} />
+            <span>Back to Blog</span>
+          </Link>
 
-        {/* Post Content */}
-        <BlogPostContent post={post} />
+          {/* Post Content */}
+          <BlogPostContent post={post} />
+        </div>
       </div>
-    </div>
+      <Footer />
+    </>
   );
 }

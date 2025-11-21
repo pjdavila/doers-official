@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
 import BlogCard from '@/components/blog/blog-card';
 import { getWordPressPosts } from '@/lib/wordpress';
 
@@ -16,7 +18,9 @@ export default async function BlogPage() {
   const { posts, pagination } = await getWordPressPosts(1, 12);
 
   return (
-    <div className="min-h-screen bg-black">
+    <>
+      <Header />
+      <div className="min-h-screen bg-black">
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-purple/10 via-transparent to-transparent"></div>
@@ -61,5 +65,7 @@ export default async function BlogPage() {
         </div>
       </section>
     </div>
+    <Footer />
+    </>
   );
 }
