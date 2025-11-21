@@ -1,0 +1,56 @@
+## Error Type
+Recoverable Error
+
+## Error Message
+Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RedirectErrorBoundary router={{...}}>
+      <InnerLayoutRouter url="/" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} segmentPath={[...]} ...>
+        <SegmentViewNode type="page" pagePath="page.tsx">
+          <SegmentTrieNode>
+          <ClientPageRoot Component={function Page} serverProvidedParams={{...}}>
+            <Page params={Promise} searchParams={Promise}>
+              <Home>
+                <Header>
+                  <header className={"fixed to..."}>
+                    <div className="container ...">
+                      <div className="flex justi...">
+                        <LinkComponent href="#" className="flex items...">
+                          <a className="flex items..." ref={function} onClick={function onClick} ...>
+                            <img>
+                            <span className="hidden sm:block text-orange text-xs font-space">
++                             DESDE 2012
+-                             SINCE 2012
+                        ...
+                    ...
+                ...
+        ...
+      ...
+
+
+
+    at span (unknown:0:0)
+    at Header (client/src/components/layout/header.tsx:53:13)
+    at Home (client/src/pages/home.tsx:21:7)
+
+## Code Frame
+  51 |           <Link href="#" className="flex items-center gap-2 flex-shrink-0">
+  52 |             <img src={doersLogo} alt="DOERS Logo" className="h-14" />
+> 53 |             <span className="hidden sm:block text-orange text-xs font-space">{t('header.since')}</span>
+     |             ^
+  54 |           </Link>
+  55 |           
+  56 |           <nav className="hidden lg:flex items-center flex-1 justify-center">
+
+Next.js version: 16.0.3 (Turbopack)
