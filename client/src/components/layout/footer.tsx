@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Twitter, Instagram, Linkedin, Dribbble } from "lucide-react";
-import doersLogo from "../../assets/images/DOERS-Horizontal.png";
 import { useTranslation } from "react-i18next";
 import { useMounted } from "@/hooks/use-mounted";
 
@@ -18,7 +17,7 @@ const Footer = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
           <Link href="#" className="flex items-center gap-2 mb-6 md:mb-0">
-            <img src={doersLogo} alt="DOERS Logo" className="h-9" />
+            <img src="/images/DOERS-Horizontal.png" alt="DOERS Logo" className="h-9" />
             {mounted && <span className="text-orange text-xs font-space">{t('footer.since')}</span>}
           </Link>
           

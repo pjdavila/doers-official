@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import doersLogo from "../../assets/images/DOERS-Horizontal.png";
 import LanguageSwitcher from "../language-switcher";
 import { useMounted } from "@/hooks/use-mounted";
 
@@ -57,7 +56,7 @@ const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center gap-8">
           <Link href="#" className="flex items-center gap-2 flex-shrink-0">
-            <img src={doersLogo} alt="DOERS Logo" className="h-14" />
+            <img src="/images/DOERS-Horizontal.png" alt="DOERS Logo" className="h-14" />
             {mounted && <span className="hidden sm:block text-orange text-xs font-space">{t('header.since')}</span>}
           </Link>
           
