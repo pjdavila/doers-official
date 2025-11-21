@@ -124,7 +124,7 @@ const HeroSection = () => {
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <span className="text-xs text-gray mb-2 font-space uppercase">{t('hero.scroll')}</span>
+          <span className="text-xs text-gray mb-2 font-space uppercase">{mounted ? t('hero.scroll') : 'SCROLL DOWN'}</span>
           <a href="#services" className="text-white opacity-60 hover:opacity-100 transition-opacity">
             <ChevronDown size={24} />
           </a>
