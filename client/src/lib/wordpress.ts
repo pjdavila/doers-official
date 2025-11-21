@@ -24,15 +24,27 @@ export async function getWordPressPosts(
       next: { revalidate: 300 }, // Revalidate every 5 minutes
     });
 
+    // Get pagination info from headers (even on error responses)
+    const total = parseInt(response.headers.get('X-WP-Total') || '0');
+    const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1');
+
     if (!response.ok) {
+      // For 400 errors (bad page number), still return pagination info
+      if (response.status === 400) {
+        return {
+          posts: [],
+          pagination: {
+            total,
+            totalPages,
+            currentPage: page,
+            perPage,
+          },
+        };
+      }
       throw new Error(`WordPress API error: ${response.status}`);
     }
 
     const posts: WordPressPost[] = await response.json();
-    
-    // Get pagination info from headers
-    const total = parseInt(response.headers.get('X-WP-Total') || '0');
-    const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1');
 
     return {
       posts,

@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import BlogCard from '@/components/blog/blog-card';
+import BlogPagination from '@/components/blog/blog-pagination';
 import { getWordPressPosts } from '@/lib/wordpress';
 
 export const metadata: Metadata = {
@@ -14,8 +15,28 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function BlogPage() {
-  const { posts, pagination } = await getWordPressPosts(1, 12);
+interface BlogPageProps {
+  searchParams: Promise<{ page?: string }>;
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const { page } = await searchParams;
+  
+  // Validate and sanitize page number BEFORE making the API call
+  let requestedPage = parseInt(page || '1', 10);
+  if (isNaN(requestedPage) || requestedPage < 1) {
+    requestedPage = 1;
+  }
+  
+  // Fetch posts with validated page number
+  let { posts, pagination } = await getWordPressPosts(requestedPage, 9);
+  
+  // If no posts but totalPages > 0, the page is out of range - fetch the last valid page
+  if (posts.length === 0 && pagination.totalPages > 0 && requestedPage > pagination.totalPages) {
+    const result = await getWordPressPosts(pagination.totalPages, 9);
+    posts = result.posts;
+    pagination = result.pagination;
+  }
 
   return (
     <>
@@ -48,13 +69,13 @@ export default async function BlogPage() {
                 ))}
               </div>
 
-              {/* Pagination Info */}
+              {/* Pagination */}
               {pagination.totalPages > 1 && (
-                <div className="text-center">
-                  <p className="text-gray text-sm font-space">
-                    Showing {posts.length} of {pagination.total} posts
-                  </p>
-                </div>
+                <BlogPagination
+                  currentPage={pagination.currentPage}
+                  totalPages={pagination.totalPages}
+                  basePath="/blog"
+                />
               )}
             </>
           ) : (
