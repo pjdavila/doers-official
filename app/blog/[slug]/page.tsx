@@ -6,13 +6,14 @@ import BlogPostContent from '@/components/blog/blog-post-content';
 import { getWordPressPostBySlug, stripHtmlTags } from '@/lib/wordpress';
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
-  const post = await getWordPressPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getWordPressPostBySlug(slug);
 
   if (!post) {
     return {
@@ -38,7 +39,8 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const post = await getWordPressPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getWordPressPostBySlug(slug);
 
   if (!post) {
     notFound();
