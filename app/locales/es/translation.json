@@ -1,0 +1,225 @@
+{
+  "header": {
+    "since": "DESDE 2012",
+    "navigation": {
+      "home": "Inicio",
+      "services": "Servicios",
+      "work": "Trabajo",
+      "about": "Nosotros",
+      "contact": "Contacto"
+    },
+    "cta": "HABLEMOS"
+  },
+  "hero": {
+    "title": {
+      "you": "TÚ LO",
+      "dream": "SUEÑAS",
+      "it": "",
+      "we": "NOSOTROS LO",
+      "do": "HACEMOS"
+    },
+    "subtitle": "Fusionamos creatividad e ingeniería para impulsar el crecimiento de tu marca con soluciones digitales que causan impacto.",
+    "cta": {
+      "work": "VER NUESTRO TRABAJO",
+      "services": "NUESTROS SERVICIOS"
+    },
+    "scroll": "DESPLÁZATE"
+  },
+  "services": {
+    "title": "NUESTROS SERVICIOS DIGITALES",
+    "subtitle": "Soluciones innovadoras para marcas visionarias",
+    "items": {
+      "webDev": {
+        "title": "DESARROLLO WEB",
+        "description": "Sitios web personalizados con experiencias de usuario fluidas e interfaces impresionantes."
+      },
+      "appDev": {
+        "title": "DESARROLLO DE APPS",
+        "description": "Aplicaciones móviles nativas y multiplataforma para iOS y Android."
+      },
+      "uiDesign": {
+        "title": "DISEÑO UI/UX",
+        "description": "Soluciones de diseño centradas en el usuario que atraen y convierten visitantes."
+      },
+      "ecommerce": {
+        "title": "COMERCIO ELECTRÓNICO",
+        "description": "Tiendas online escalables con soluciones de pago seguras y gestión de productos."
+      }
+    }
+  },
+  "work": {
+    "title": "NUESTRO TRABAJO ESTELAR",
+    "subtitle": "Transformando ideas ambiciosas en experiencias digitales extraordinarias para marcas líderes",
+    "filters": {
+      "all": "Todos",
+      "apps": "Apps",
+      "dashboards": "Dashboards",
+      "websites": "Websites",
+      "social": "Redes Sociales"
+    },
+    "projects": {
+      "ottApp": {
+        "category": "APLICACIÓN OTT",
+        "title": "WAPA TV",
+        "description": "Solución de streaming multiplataforma con entrega de contenido personalizado e integración de análisis."
+      },
+      "webRedesign": {
+        "category": "REDISEÑO DE SITIO WEB",
+        "title": "TeleOnce",
+        "description": "Plataforma de contenido de alto rendimiento con programación dinámica y capacidades de transmisión en vivo."
+      },
+      "ecommerce": {
+        "category": "PLATAFORMA DE COMERCIO ELECTRÓNICO",
+        "title": "PRTicket",
+        "description": "Solución integral de venta de entradas con procesamiento seguro de pagos y gestión de eventos."
+      },
+      "interactive": {
+        "category": "EXPERIENCIA INTERACTIVA",
+        "title": "Jeep & RAM",
+        "description": "Sala de exposición digital inmersiva con personalización de vehículos en 3D e integración de generación de leads."
+      },
+      "analytics": {
+        "category": "DASHBOARD DE ANÁLISIS",
+        "title": "Analytics Pro",
+        "description": "Plataforma de inteligencia empresarial en tiempo real con visualizaciones avanzadas de datos y seguimiento de KPIs."
+      },
+      "crm": {
+        "category": "DASHBOARD CRM",
+        "title": "Sales CRM",
+        "description": "Sistema de gestión de relaciones con clientes con seguimiento de pipeline de ventas y herramientas de automatización."
+      },
+      "socialCampaign": {
+        "category": "CAMPAÑA DE REDES SOCIALES",
+        "title": "Social Campaign",
+        "description": "Campaña de marketing en redes sociales multiplataforma con contenido de marca y análisis de engagement."
+      },
+      "contentStrategy": {
+        "category": "ESTRATEGIA DE CONTENIDO",
+        "title": "Content Strategy",
+        "description": "Estrategia integral de contenido para redes sociales con storytelling visual y gestión de comunidad."
+      }
+    },
+    "viewAll": "VER TODOS LOS PROYECTOS",
+    "viewCase": "VER CASO DE ESTUDIO",
+    "noProjects": "No se encontraron proyectos en esta categoría"
+  },
+  "about": {
+    "title": "SOBRE NOSOTROS",
+    "subtitle": "Desarrolladores y diseñadores experimentados con pasión por la excelencia",
+    "description": "En DOERS, combinamos experiencia técnica con innovación creativa para entregar productos digitales que superan las expectativas. Con más de una década de experiencia, nuestro equipo trabaja incansablemente para transformar tu visión en realidad.",
+    "mission": {
+      "title": "NUESTRA MISIÓN",
+      "description": "Potenciar a las empresas mediante soluciones tecnológicas que impulsen el crecimiento y mejoren la participación de los usuarios."
+    },
+    "vision": {
+      "title": "NUESTRA VISIÓN",
+      "description": "Ser el socio digital líder para empresas visionarias que buscan experiencias online excepcionales."
+    },
+    "stats": {
+      "years": {
+        "number": "12+",
+        "label": "AÑOS DE EXPERIENCIA"
+      },
+      "projects": {
+        "number": "320+",
+        "label": "PROYECTOS COMPLETADOS"
+      },
+      "clients": {
+        "number": "150+",
+        "label": "CLIENTES SATISFECHOS"
+      },
+      "team": {
+        "number": "30+",
+        "label": "MIEMBROS DEL EQUIPO"
+      }
+    }
+  },
+  "contact": {
+    "title": "INICIEMOS UN PROYECTO",
+    "subtitle": "¿Listo para transformar tu presencia digital?",
+    "description": "Completa el formulario a continuación y nos pondremos en contacto contigo en 24 horas.",
+    "form": {
+      "name": {
+        "label": "Tu Nombre",
+        "placeholder": "Ingresa tu nombre completo"
+      },
+      "email": {
+        "label": "Correo Electrónico",
+        "placeholder": "Ingresa tu correo electrónico"
+      },
+      "phone": {
+        "label": "Número de Teléfono",
+        "placeholder": "Ingresa tu número de teléfono"
+      },
+      "message": {
+        "label": "Tu Mensaje",
+        "placeholder": "Cuéntanos sobre tu proyecto..."
+      },
+      "submit": "ENVIAR MENSAJE"
+    },
+    "success": "¡Tu mensaje ha sido enviado con éxito!"
+  },
+  "footer": {
+    "since": "DESDE 2012",
+    "copyright": "Todos los derechos reservados.",
+    "rights": "© 2024 DOERS. Todos los derechos reservados.",
+    "address": "123 Avenida Tecnológica, Distrito Innovate, San Juan, PR 00927",
+    "contact": {
+      "title": "CONTACTO",
+      "email": "info@doers.dev",
+      "phone": "+1 (787) 689-9275"
+    },
+    "social": {
+      "title": "SÍGUENOS",
+      "instagram": "Instagram",
+      "twitter": "Twitter",
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook"
+    },
+    "privacy": "Política de Privacidad"
+  },
+  "privacy": {
+    "title": "POLÍTICA DE PRIVACIDAD",
+    "section1": {
+      "title": "Información que Recopilamos",
+      "content": "En DOERS (doers.dev), respetamos tu privacidad y nos comprometemos a proteger tu información personal. Esta política explica cómo recopilamos, usamos y protegemos tu información cuando visitas nuestro sitio web o utilizas nuestros servicios."
+    },
+    "section2": {
+      "title": "Tipos de Información",
+      "content": "Recopilamos los siguientes tipos de información:",
+      "item1": "Información de contacto (nombre, email, teléfono)",
+      "item2": "Información del proyecto y requisitos",
+      "item3": "Datos de navegación y uso del sitio web",
+      "item4": "Información técnica sobre tu dispositivo y navegador"
+    },
+    "section3": {
+      "title": "Uso de la Información",
+      "content": "Utilizamos tu información para proporcionar nuestros servicios, comunicarnos contigo sobre tu proyecto, mejorar nuestros servicios y cumplir con obligaciones legales. No vendemos ni compartimos tu información personal con terceros sin tu consentimiento."
+    },
+    "section4": {
+      "title": "Protección de Datos",
+      "content": "Implementamos medidas de seguridad técnicas y organizativas apropiadas para proteger tu información personal contra acceso no autorizado, alteración, divulgación o destrucción."
+    },
+    "section5": {
+      "title": "Cookies",
+      "content": "Utilizamos cookies y tecnologías similares para mejorar tu experiencia en nuestro sitio web, analizar el tráfico y personalizar el contenido. Puedes controlar el uso de cookies a través de la configuración de tu navegador."
+    },
+    "section6": {
+      "title": "Tus Derechos",
+      "content": "Tienes derecho a acceder, corregir, eliminar o limitar el procesamiento de tu información personal. También puedes oponerte al procesamiento o solicitar la portabilidad de tus datos."
+    },
+    "section7": {
+      "title": "Cambios a esta Política",
+      "content": "Podemos actualizar esta política de privacidad ocasionalmente. Te notificaremos sobre cambios significativos a través de nuestro sitio web o por email."
+    },
+    "contact": {
+      "title": "Contacto",
+      "content": "Si tienes preguntas sobre esta política de privacidad o el manejo de tu información personal, contáctanos en doers.dev:"
+    },
+    "lastUpdated": "Última actualización: Agosto 2025"
+  },
+  "language": {
+    "en": "Inglés",
+    "es": "Español"
+  }
+}
