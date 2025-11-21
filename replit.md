@@ -78,31 +78,32 @@ The project has been successfully migrated to Next.js 16 for improved SEO, SSR c
 **Running the Project**:
 
 **Current Status (November 21, 2025)**:
-The project currently has a **dual-stack setup** with both Vite and Next.js configured. The Replit workflow still runs the Vite version by default.
+The project is **ready to migrate to Next.js**. All code has been migrated, but the workflow still runs Vite.
 
-**Option 1: Next.js (Recommended for Production - Manual Setup Required)**
-To run Next.js, you need to **manually execute** these commands in the shell:
+**To Complete Migration to Next.js:**
+
+See `NEXTJS-SETUP.md` for detailed instructions. Quick summary:
+
+1. Show hidden files in the file panel
+2. Edit `.replit` file:
+   - Line 57: Change `args = "next dev"`
+   - Line 58: Change `waitForPort = 3000`
+3. Save and restart the workflow
+
+**Running Next.js Manually (Alternative):**
 ```bash
 # Development
 next dev  # Starts Next.js dev server on port 3000
 
 # Production
-next build  # Builds Next.js app
-next start  # Starts Next.js production server
+next build && next start
 ```
 
-**Option 2: Vite (Currently Active in Workflow)**
-The workflow "Start application" currently runs:
-```bash
-tsx server/index.ts  # Starts Vite + Express on port 5000
-```
-
-**⚠️ Manual Steps Required to Switch to Next.js**:
-1. Update `.replit` file (line ~41) to change the workflow command:
-   - Current: `args = "npm run dev"` (runs `tsx server/index.ts`)
-   - Change to: `args = "next dev"` (to run Next.js)
-   
-2. **Note**: Package.json cannot be edited programmatically, so npm scripts for Next.js don't exist. You must run Next.js commands directly (`next dev`, `next build`, `next start`) rather than through npm scripts.
+**Legacy Vite Setup:**
+The Vite configuration files are still present for backward compatibility:
+- `vite.config.ts` - Vite configuration
+- `server/index.ts` - Vite entry point
+- Can be removed once Next.js is confirmed working
 
 **What's Improved**:
 - Better SEO with server-side rendering
