@@ -7,15 +7,6 @@ import ProjectCard from "@/components/ui/project-card";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useMounted } from "@/hooks/use-mounted";
-import project1Image from "@assets/generated_images/WAPA_TV_OTT_Streaming_8cf1a965.png";
-import project2Image from "@assets/generated_images/TeleOnce_Website_Redesign_2772bc46.png";
-import project3Image from "@assets/generated_images/PRTicket_E-commerce_Platform_9f37733b.png";
-import project4Image from "@assets/generated_images/Jeep_RAM_Interactive_Experience_3ad3eead.png";
-import project5Image from "@assets/generated_images/Analytics_Dashboard_275a6a78.png";
-import project6Image from "@assets/generated_images/CRM_Dashboard_96472a81.png";
-import project7Image from "@assets/generated_images/Social_Media_Campaign_3f193435.png";
-import project8Image from "@assets/generated_images/Social_Media_Content_f0a14ef1.png";
-
 type Category = "apps" | "dashboards" | "websites" | "social";
 
 interface Project {
@@ -29,7 +20,7 @@ interface Project {
 
 const projects: Project[] = [
   {
-    image: project1Image,
+    image: "/images/projects/WAPA_TV_OTT_Streaming_8cf1a965.png",
     category: "work.projects.ottApp.category",
     title: "WAPA TV",
     description: "work.projects.ottApp.description",
@@ -37,7 +28,7 @@ const projects: Project[] = [
     categories: ["apps"],
   },
   {
-    image: project2Image,
+    image: "/images/projects/TeleOnce_Website_Redesign_2772bc46.png",
     category: "work.projects.webRedesign.category",
     title: "TeleOnce",
     description: "work.projects.webRedesign.description",
@@ -45,7 +36,7 @@ const projects: Project[] = [
     categories: ["apps", "websites"],
   },
   {
-    image: project3Image,
+    image: "/images/projects/PRTicket_E-commerce_Platform_9f37733b.png",
     category: "work.projects.ecommerce.category",
     title: "PRTicket",
     description: "work.projects.ecommerce.description",
@@ -53,7 +44,7 @@ const projects: Project[] = [
     categories: ["websites"],
   },
   {
-    image: project4Image,
+    image: "/images/projects/Jeep_RAM_Interactive_Experience_3ad3eead.png",
     category: "work.projects.interactive.category",
     title: "Jeep & RAM",
     description: "work.projects.interactive.description",
@@ -61,7 +52,7 @@ const projects: Project[] = [
     categories: ["websites"],
   },
   {
-    image: project5Image,
+    image: "/images/projects/Analytics_Dashboard_275a6a78.png",
     category: "work.projects.analytics.category",
     title: "Analytics Pro",
     description: "work.projects.analytics.description",
@@ -69,7 +60,7 @@ const projects: Project[] = [
     categories: ["dashboards"],
   },
   {
-    image: project6Image,
+    image: "/images/projects/CRM_Dashboard_96472a81.png",
     category: "work.projects.crm.category",
     title: "Sales CRM",
     description: "work.projects.crm.description",
@@ -77,7 +68,7 @@ const projects: Project[] = [
     categories: ["dashboards"],
   },
   {
-    image: project7Image,
+    image: "/images/projects/Social_Media_Campaign_3f193435.png",
     category: "work.projects.socialCampaign.category",
     title: "Social Campaign",
     description: "work.projects.socialCampaign.description",
@@ -85,7 +76,7 @@ const projects: Project[] = [
     categories: ["social"],
   },
   {
-    image: project8Image,
+    image: "/images/projects/Social_Media_Content_f0a14ef1.png",
     category: "work.projects.contentStrategy.category",
     title: "Content Strategy",
     description: "work.projects.contentStrategy.description",
