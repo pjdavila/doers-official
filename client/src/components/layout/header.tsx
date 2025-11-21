@@ -1,6 +1,8 @@
+'use client'
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "wouter";
+import Link from "next/link";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import doersLogo from "../../assets/images/DOERS-Horizontal.png";

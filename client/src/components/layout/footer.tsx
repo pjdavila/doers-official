@@ -1,5 +1,7 @@
+'use client'
+
 import { motion } from "framer-motion";
-import { Link } from "wouter";
+import Link from "next/link";
 import { Twitter, Instagram, Linkedin, Dribbble } from "lucide-react";
 import doersLogo from "../../assets/images/DOERS-Horizontal.png";
 import { useTranslation } from "react-i18next";

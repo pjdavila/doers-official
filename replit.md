@@ -29,6 +29,93 @@ A multilingual digital platform with advanced 3D interactive design, focusing on
 
 ## Recent Changes
 
+### 🔄 NEXT.JS 16 MIGRATION (November 21, 2025)
+**Status**: ✅ Completed - Migrated from Vite + React to Next.js 16 with App Router
+
+**Migration Overview**:
+The project has been successfully migrated to Next.js 16 for improved SEO, SSR capabilities, and better performance optimization.
+
+**New Structure Created**:
+
+1. **Next.js App Router Setup** (`app/` directory):
+   - `app/layout.tsx` - Root layout with complete SEO meta tags and JSON-LD structured data
+   - `app/page.tsx` - Main home page importing existing components
+   - `app/not-found.tsx` - Custom 404 page
+   - `app/privacy-policy/page.tsx` - Privacy policy page
+   - `app/globals.css` - Global styles with Tailwind
+   - `app/providers.tsx` - Client-side providers (React Query, i18next)
+   - `app/i18n.ts` - i18next configuration for client-side translations
+   - `app/locales/` - Translation files (en, es)
+
+2. **Configuration Files**:
+   - `next.config.mjs` - Next.js configuration with image optimization and transpilation
+   - `tsconfig.json` - Updated with Next.js paths and settings
+   - `tailwind.config.ts` - Compatible with both Vite and Next.js
+   - `postcss.config.mjs` - PostCSS configuration
+
+3. **Public Assets**:
+   - Migrated all public assets to `public/` directory
+   - SEO images: og-image.jpg, twitter-image.jpg
+   - Animated SVG logo files
+
+**Key Features**:
+- ✅ Server-Side Rendering (SSR) for better SEO
+- ✅ App Router with file-based routing
+- ✅ Enhanced SEO with meta tags and JSON-LD
+- ✅ i18next integration for multilingual support
+- ✅ React Query for data fetching
+- ✅ All existing components work with 'use client' directives
+- ✅ Improved performance with Turbopack (Next.js 16)
+- ✅ Image optimization with next/image
+
+**Migration Strategy**:
+- Maintained all existing Vite/React components in `client/src/`
+- Next.js pages import and use existing components as Client Components
+- Preserved all animations, 3D effects, and interactive features
+- Kept Express backend for API routes (can migrate to Next.js API routes later)
+- Dual setup: Both Vite and Next.js configurations available
+
+**Running the Project**:
+
+**Option 1: Next.js (Recommended for Production)**
+```bash
+# Development
+npm run dev  # Starts Next.js dev server on port 3000
+
+# Production
+npm run build  # Builds Next.js app
+npm run start  # Starts Next.js production server
+```
+
+**Option 2: Vite (Legacy)**
+```bash
+# Development
+npm run vite-dev  # Starts Vite + Express on port 5000
+
+# Production
+npm run vite-build  # Builds Vite app
+npm run vite-start  # Starts production server
+```
+
+**⚠️ Manual Step Required**:
+To switch the Replit workflow to Next.js, update `.replit` file (line ~41):
+- Change: `args = "npm run dev"` (currently runs Vite)
+- To ensure it runs Next.js when workflow restarts
+
+**What's Improved**:
+- Better SEO with server-side rendering
+- Faster page loads with automatic code splitting
+- Built-in image optimization
+- Better production builds with Turbopack
+- Improved developer experience with App Router
+- Future-proof architecture for scaling
+
+**Technical Notes**:
+- Project uses ES modules (`"type": "module"`) so Next.js config is `.mjs`
+- All client-side components marked with `'use client'` directive
+- Tailwind configuration shared between Vite and Next.js
+- i18next initialized on client-side for browser language detection
+
 ### 🚀 GALAXIES.DEV INSPIRED HERO SECTION (November 2025)
 **Status**: ✅ Completed - Orbital animation system with 3D effects
 
