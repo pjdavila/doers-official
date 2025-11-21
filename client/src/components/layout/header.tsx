@@ -38,12 +38,14 @@ const Header = () => {
     { name: t('header.navigation.services'), href: "#services" },
     { name: t('header.navigation.work'), href: "#work" },
     { name: t('header.navigation.about'), href: "#about" },
+    { name: 'Blog', href: "/blog" },
     { name: t('header.navigation.contact'), href: "#contact" },
   ] : [
     { name: 'Home', href: "#" },
     { name: 'Services', href: "#services" },
     { name: 'Work', href: "#work" },
     { name: 'About', href: "#about" },
+    { name: 'Blog', href: "/blog" },
     { name: 'Contact', href: "#contact" },
   ];
 

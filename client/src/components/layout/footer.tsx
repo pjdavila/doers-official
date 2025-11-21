@@ -25,6 +25,7 @@ const Footer = () => {
             <a href="#services" className="text-gray hover:text-white transition-colors font-space text-sm">{mounted ? t('header.navigation.services') : 'Services'}</a>
             <a href="#work" className="text-gray hover:text-white transition-colors font-space text-sm">{mounted ? t('header.navigation.work') : 'Work'}</a>
             <a href="#about" className="text-gray hover:text-white transition-colors font-space text-sm">{mounted ? t('header.navigation.about') : 'About'}</a>
+            <Link href="/blog" className="text-gray hover:text-white transition-colors font-space text-sm">Blog</Link>
             <a href="#contact" className="text-gray hover:text-white transition-colors font-space text-sm">{mounted ? t('header.navigation.contact') : 'Contact'}</a>
             <Link href="/privacy-policy" className="text-gray hover:text-white transition-colors font-space text-sm">{mounted ? t('footer.privacy') : 'Privacy Policy'}</Link>
           </nav>

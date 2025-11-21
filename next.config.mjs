@@ -3,7 +3,13 @@ const nextConfig = {
   reactStrictMode: true,
   
   images: {
-    remotePatterns: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cmsnet.co',
+        pathname: '/doers/wp-content/**',
+      },
+    ],
     formats: ['image/avif', 'image/webp'],
   },
   
