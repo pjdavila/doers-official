@@ -1,9 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter, Space_Grotesk, Bebas_Neue, Montserrat } from 'next/font/google'
 import './globals.css'
-import { Toaster } from '@/components/ui/toaster'
-import CustomCursor from '@/components/custom-cursor'
-import ProgressBar from '@/components/progress-bar'
 import ClientProviders from './providers'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
@@ -146,10 +143,7 @@ export default function RootLayout({
       </head>
       <body className="font-inter antialiased overflow-x-hidden">
         <ClientProviders>
-          <CustomCursor />
-          <ProgressBar />
           {children}
-          <Toaster />
         </ClientProviders>
       </body>
     </html>

@@ -8,11 +8,14 @@ interface LoadingScreenProps {
 }
 
 const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
+  const [mounted, setMounted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [progress, setProgress] = useState(0);
   const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 });
 
   useEffect(() => {
+    // Only render on client to avoid hydration mismatch
+    setMounted(true);
     // Get window dimensions on client-side only
     if (typeof window !== 'undefined') {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
@@ -20,6 +23,8 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
   }, []);
 
   useEffect(() => {
+    if (!mounted) return;
+    
     // Simulate loading progress
     const interval = setInterval(() => {
       setProgress((prev) => {
@@ -38,7 +43,12 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [onLoadingComplete]);
+  }, [onLoadingComplete, mounted]);
+
+  // Don't render on server to avoid hydration issues
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <AnimatePresence>
