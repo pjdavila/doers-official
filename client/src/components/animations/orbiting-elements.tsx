@@ -1,12 +1,18 @@
 import { motion } from "framer-motion";
 import { Smartphone, Globe, Zap, Code, Database } from "lucide-react";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 interface OrbitingElementsProps {
   className?: string;
 }
 
 const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
   const orbits = useMemo(() => [
     {
       radius: 250,
@@ -44,6 +50,10 @@ const OrbitingElements = ({ className = "" }: OrbitingElementsProps) => {
       initialRotation: Math.random() * 360
     }))
   , []);
+
+  if (!mounted) {
+    return <div className={`absolute inset-0 ${className}`} />;
+  }
 
   return (
     <div className={`absolute inset-0 flex items-center justify-center ${className}`}>

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { isMobile, useReducedMotion } from "@/lib/device-detection";
 
 interface Star {
@@ -23,9 +23,14 @@ interface StarfieldProps {
 }
 
 const Starfield = ({ className = "", starCount = 50 }: StarfieldProps) => {
+  const [mounted, setMounted] = useState(false);
   const mobile = isMobile();
   const reducedMotion = useReducedMotion();
   const effectiveStarCount = mobile ? Math.floor(starCount / 2) : starCount;
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const stars = useMemo<Star[]>(() => 
     Array.from({ length: effectiveStarCount }, (_, i) => ({
@@ -45,6 +50,19 @@ const Starfield = ({ className = "", starCount = 50 }: StarfieldProps) => {
       delay: i * 8
     }))
   , []);
+
+  if (!mounted) {
+    return (
+      <div className={`absolute inset-0 overflow-hidden ${className}`}>
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: "radial-gradient(ellipse at center, rgba(20, 20, 40, 1) 0%, rgba(0, 0, 0, 1) 100%)"
+          }}
+        />
+      </div>
+    );
+  }
 
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`}>
