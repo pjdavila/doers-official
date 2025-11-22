@@ -61,13 +61,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${bebasNeue.variable} ${montserrat.variable}`}>
-      <head>
+      <head suppressHydrationWarning>
         <meta name="theme-color" content="#FF5A1F" />
         <meta name="msapplication-TileColor" content="#000000" />
         
         {/* Structured Data / JSON-LD */}
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -125,6 +126,7 @@ export default function RootLayout({
         
         <script
           type="application/ld+json"
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
