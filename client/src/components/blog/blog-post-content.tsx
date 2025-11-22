@@ -1,9 +1,11 @@
 'use client'
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { Calendar, Tag } from "lucide-react";
 import type { WordPressPost } from "@shared/wordpress-types";
 import { formatPostDate } from "@/lib/wordpress";
+import SocialShareButtons from "./social-share-buttons";
 
 interface BlogPostContentProps {
   post: WordPressPost;
@@ -12,6 +14,11 @@ interface BlogPostContentProps {
 const BlogPostContent = ({ post }: BlogPostContentProps) => {
   const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
   const categories = post._embedded?.['wp:term']?.[0] || [];
+  const [postUrl, setPostUrl] = useState('');
+
+  useEffect(() => {
+    setPostUrl(window.location.href);
+  }, []);
 
   return (
     <article className="max-w-4xl mx-auto">
@@ -59,6 +66,9 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
           </div>
         )}
       </header>
+
+      {/* Social Share Buttons */}
+      <SocialShareButtons url={postUrl} title={post.title.rendered} />
 
       {/* Content */}
       <div
