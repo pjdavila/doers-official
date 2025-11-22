@@ -1,5 +1,6 @@
 'use client'
 
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
@@ -21,8 +22,10 @@ const estimateReadingTime = (content: string): number => {
 const BlogCard = ({ post, index }: BlogCardProps) => {
   const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
   const categories = post._embedded?.['wp:term']?.[0] || [];
-  const excerpt = stripHtmlTags(post.excerpt.rendered);
-  const readingTime = estimateReadingTime(post.content.rendered);
+  
+  // Memoize expensive calculations
+  const excerpt = useMemo(() => stripHtmlTags(post.excerpt.rendered), [post.excerpt.rendered]);
+  const readingTime = useMemo(() => estimateReadingTime(post.content.rendered), [post.content.rendered]);
 
   return (
     <motion.article

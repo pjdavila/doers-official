@@ -60,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${bebasNeue.variable} ${montserrat.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${spaceGrotesk.variable} ${bebasNeue.variable} ${montserrat.variable}`}>
       <head suppressHydrationWarning>
         <meta name="theme-color" content="#FF5A1F" />
         <meta name="msapplication-TileColor" content="#000000" />
