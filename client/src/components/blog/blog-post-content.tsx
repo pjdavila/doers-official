@@ -1,5 +1,6 @@
 'use client'
 
+import Image from "next/image";
 import { Calendar, Tag } from "lucide-react";
 import type { WordPressPost } from "@shared/wordpress-types";
 import { formatPostDate } from "@/lib/wordpress";
@@ -47,10 +48,13 @@ const BlogPostContent = ({ post }: BlogPostContentProps) => {
         {/* Featured Image */}
         {featuredImage && (
           <div className="relative w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mb-12">
-            <img
+            <Image
               src={featuredImage}
               alt={post.title.rendered}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 1024px) 100vw, 896px"
+              className="object-cover"
+              priority
             />
           </div>
         )}

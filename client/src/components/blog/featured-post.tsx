@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, ArrowRight, Sparkles } from "lucide-react";
 import type { WordPressPost } from "@shared/wordpress-types";
 import { stripHtmlTags, formatPostDate } from "@/lib/wordpress";
@@ -37,10 +38,13 @@ const FeaturedPost = ({ post }: FeaturedPostProps) => {
       {/* Background Image */}
       {featuredImage && (
         <div className="absolute inset-0">
-          <img
+          <Image
             src={featuredImage}
             alt={post.title.rendered}
-            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            fill
+            sizes="100vw"
+            className="object-cover transition-transform duration-1000 group-hover:scale-105"
+            priority
           />
           {/* Gradient Overlay - DOERS branding */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>

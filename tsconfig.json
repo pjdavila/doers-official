@@ -2,7 +2,9 @@
   "include": [
     "client/src/**/*",
     "shared/**/*",
-    "server/**/*",
+    "server/routes.ts",
+    "server/storage.ts",
+    "server/email-service.ts",
     "app/**/*",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
@@ -12,7 +14,8 @@
     "build",
     "dist",
     "**/*.test.ts",
-    ".next"
+    ".next",
+    "archive"
   ],
   "compilerOptions": {
     "incremental": true,
@@ -34,8 +37,7 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "types": [
-      "node",
-      "vite/client"
+      "node"
     ],
     "plugins": [
       {

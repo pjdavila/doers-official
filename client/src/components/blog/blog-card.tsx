@@ -3,6 +3,7 @@
 import { useMemo } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import type { WordPressPost } from "@shared/wordpress-types";
 import { stripHtmlTags, formatPostDate } from "@/lib/wordpress";
@@ -39,10 +40,12 @@ const BlogCard = ({ post, index }: BlogCardProps) => {
       {/* Featured Image */}
       {featuredImage && (
         <div className="relative h-64 overflow-hidden">
-          <img
+          <Image
             src={featuredImage}
             alt={post.title.rendered}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent"></div>
           {/* Glow effect on hover */}
