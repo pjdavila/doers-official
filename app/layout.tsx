@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, Space_Grotesk, Bebas_Neue, Montserrat } from 'next/font/google'
 import './globals.css'
 import ClientProviders from './providers'
+import GoogleAnalytics from './google-analytics'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space' })
@@ -144,6 +145,7 @@ export default function RootLayout({
         />
       </head>
       <body className="font-inter antialiased overflow-x-hidden">
+        <GoogleAnalytics />
         <ClientProviders>
           {children}
         </ClientProviders>
