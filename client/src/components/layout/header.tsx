@@ -34,19 +34,19 @@ const Header = () => {
   };
 
   const navLinks = mounted ? [
-    { name: t('header.navigation.home'), href: "#" },
-    { name: t('header.navigation.services'), href: "#services" },
-    { name: t('header.navigation.work'), href: "#work" },
-    { name: t('header.navigation.about'), href: "#about" },
+    { name: t('header.navigation.home'), href: "/" },
+    { name: t('header.navigation.services'), href: "/#services" },
+    { name: t('header.navigation.work'), href: "/#work" },
+    { name: t('header.navigation.about'), href: "/#about" },
     { name: 'Blog', href: "/blog" },
-    { name: t('header.navigation.contact'), href: "#contact" },
+    { name: t('header.navigation.contact'), href: "/#contact" },
   ] : [
-    { name: 'Home', href: "#" },
-    { name: 'Services', href: "#services" },
-    { name: 'Work', href: "#work" },
-    { name: 'About', href: "#about" },
+    { name: 'Home', href: "/" },
+    { name: 'Services', href: "/#services" },
+    { name: 'Work', href: "/#work" },
+    { name: 'About', href: "/#about" },
     { name: 'Blog', href: "/blog" },
-    { name: 'Contact', href: "#contact" },
+    { name: 'Contact', href: "/#contact" },
   ];
 
   const headerClasses = `fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -57,7 +57,7 @@ const Header = () => {
     <header className={headerClasses}>
       <div className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center gap-8">
-          <Link href="#" className="flex items-center gap-2 flex-shrink-0">
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
             <img src="/images/DOERS-Horizontal.png" alt="DOERS Logo" className="h-14" />
             {mounted && <span className="hidden sm:block text-orange text-xs font-space">{t('header.since')}</span>}
           </Link>
@@ -66,14 +66,14 @@ const Header = () => {
             <div className="bg-white bg-opacity-[0.08] backdrop-blur-sm rounded-full px-2 py-2 border border-white border-opacity-10">
               <div className="flex items-center gap-1">
                 {navLinks.map((link) => (
-                  <a 
+                  <Link 
                     href={link.href} 
                     key={link.name}
                     data-testid={`nav-${link.name.toLowerCase()}`}
                     className="relative text-white font-space text-sm px-5 py-2 rounded-full hover:bg-white hover:bg-opacity-10 transition-all duration-300"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -81,14 +81,14 @@ const Header = () => {
 
           <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
             <LanguageSwitcher />
-            <a 
-              href="#contact" 
+            <Link 
+              href="/#contact" 
               data-testid="button-get-started"
               className="bg-black text-white px-6 py-3 rounded-full font-space font-medium text-sm hover:bg-opacity-80 transition-all flex items-center gap-2 border border-white border-opacity-20"
             >
               <span>{mounted ? t('header.cta') : 'Get Started'}</span>
               <ArrowRight size={16} />
-            </a>
+            </Link>
           </div>
           
           <button 
@@ -113,28 +113,34 @@ const Header = () => {
           >
             <div className="container mx-auto px-6 py-8 flex flex-col space-y-6">
               {navLinks.map((link, index) => (
-                <motion.a 
+                <Link
                   key={link.name}
                   href={link.href}
                   className="text-white font-space tracking-wide text-lg border-b border-gray border-opacity-20 pb-4"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
                 >
-                  {link.name}
-                </motion.a>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    {link.name}
+                  </motion.div>
+                </Link>
               ))}
-              <motion.a 
-                href="#contact" 
+              <Link
+                href="/#contact" 
                 className="bg-orange text-white px-6 py-3 rounded-full font-space font-medium tracking-wide text-lg text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.1 }}
               >
-                {mounted ? t('header.cta') : 'Get Started'}
-              </motion.a>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: navLinks.length * 0.1 }}
+                >
+                  {mounted ? t('header.cta') : 'Get Started'}
+                </motion.div>
+              </Link>
               
               <motion.div
                 className="mt-4 flex justify-center"
