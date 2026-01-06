@@ -1,20 +1,12 @@
-import { useEffect, useRef } from "react";
+import svgContent from "./animated-ai-logo.html?raw";
 
 const AnimatedAILogo = ({ className = "" }: { className?: string }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Load SVG content
-    fetch('/src/components/animations/animated-ai-logo.html')
-      .then(res => res.text())
-      .then(svgContent => {
-        if (containerRef.current) {
-          containerRef.current.innerHTML = svgContent;
-        }
-      });
-  }, []);
-
-  return <div ref={containerRef} className={className} />;
+  return (
+    <div
+      className={className}
+      dangerouslySetInnerHTML={{ __html: svgContent }}
+    />
+  );
 };
 
 export default AnimatedAILogo;

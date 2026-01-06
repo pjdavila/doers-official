@@ -37,7 +37,8 @@
     "isolatedModules": true,
     "baseUrl": ".",
     "types": [
-      "node"
+      "node",
+      "vite/client"
     ],
     "plugins": [
       {
