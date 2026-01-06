@@ -2,6 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   
+  allowedDevOrigins: [
+    '*.replit.dev',
+    '*.riker.replit.dev',
+  ],
+  
   images: {
     remotePatterns: [
       {

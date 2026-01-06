@@ -62,14 +62,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${inter.variable} ${spaceGrotesk.variable} ${bebasNeue.variable} ${montserrat.variable}`}>
-      <head suppressHydrationWarning>
+      <head>
         <meta name="theme-color" content="#FF5A1F" />
         <meta name="msapplication-TileColor" content="#000000" />
+      </head>
+      <body className="font-inter antialiased overflow-x-hidden">
+        <GoogleAnalytics />
         
-        {/* Structured Data / JSON-LD */}
+        {/* Structured Data / JSON-LD - placed in body to avoid hydration issues */}
         <script
           type="application/ld+json"
-          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -127,7 +129,6 @@ export default function RootLayout({
         
         <script
           type="application/ld+json"
-          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
@@ -143,9 +144,7 @@ export default function RootLayout({
             })
           }}
         />
-      </head>
-      <body className="font-inter antialiased overflow-x-hidden">
-        <GoogleAnalytics />
+        
         <ClientProviders>
           {children}
         </ClientProviders>
