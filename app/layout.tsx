@@ -112,10 +112,10 @@ export default function RootLayout({
               },
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "123 Tech Avenue, Innovate District",
-                "addressLocality": "San Juan",
+                "streetAddress": "333 Ave Lopategui",
+                "addressLocality": "Guaynabo",
                 "addressRegion": "PR",
-                "postalCode": "00927",
+                "postalCode": "00969",
                 "addressCountry": "PR"
               },
               "sameAs": [
