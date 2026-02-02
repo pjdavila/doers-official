@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+
+export const runtime = 'edge';
+
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 import FeaturedPost from '@/components/blog/featured-post';
