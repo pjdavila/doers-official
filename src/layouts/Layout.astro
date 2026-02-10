@@ -1,0 +1,41 @@
+---
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="bg-black text-white">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="DOERS AI Agency" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              orange: '#FF5A1F',
+              purple: '#7A3FFF',
+              gray: '#94A3B8',
+            },
+            fontFamily: {
+              bebas: ['Bebas Neue', 'sans-serif'],
+              space: ['Space Grotesk', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+	</head>
+	<body class="antialiased overflow-x-hidden">
+		<slot />
+	</body>
+</html>
